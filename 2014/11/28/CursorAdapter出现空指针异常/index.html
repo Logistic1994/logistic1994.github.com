@@ -1,0 +1,616 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>CursorAdapter出现空指针异常 | Logistic1994&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Logistic1994">
+    
+
+    
+    <meta name="description" content="0x01  使用Loader配合CursorAdapter时遇到NullPointerException。  代码精简后如下：
+  12345678910111213141516171819202122232425262728293031323334353637383940414243protected ListView mListView;@Overridepublic View onCreat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CursorAdapter出现空指针异常">
+<meta property="og:url" content="http://logistic1994.github.io/2014/11/28/CursorAdapter出现空指针异常/index.html">
+<meta property="og:site_name" content="Logistic1994's Blog">
+<meta property="og:description" content="0x01  使用Loader配合CursorAdapter时遇到NullPointerException。  代码精简后如下：
+  12345678910111213141516171819202122232425262728293031323334353637383940414243protected ListView mListView;@Overridepublic View onCreat">
+<meta property="og:updated_time" content="2015-10-25T07:39:35.590Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CursorAdapter出现空指针异常">
+<meta name="twitter:description" content="0x01  使用Loader配合CursorAdapter时遇到NullPointerException。  代码精简后如下：
+  12345678910111213141516171819202122232425262728293031323334353637383940414243protected ListView mListView;@Overridepublic View onCreat">
+
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Logistic1994&#39;s Blog" title="Logistic1994&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Logistic1994&#39;s Blog">Logistic1994&#39;s Blog</a></h1>
+				<h2 class="blog-motto">CS. Data Science. Deep Learning. Others.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:logistic1994.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/11/28/CursorAdapter出现空指针异常/" title="CursorAdapter出现空指针异常" itemprop="url">CursorAdapter出现空指针异常</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Logistic1994" target="_blank" itemprop="author">Logistic1994</a>
+		
+  <p class="article-time">
+    <time datetime="2014-11-28T05:28:19.000Z" itemprop="datePublished"> 发表于 2014-11-28</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<ul>
+<li><p>0x01<br>  使用Loader<cursor>配合CursorAdapter时遇到NullPointerException。<br>  代码精简后如下：</cursor></p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> ListView mListView;</span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)</span></span>&#123;</span><br><span class="line">	mListView = getListView();</span><br><span class="line">	mListView.addFootHeader(<span class="keyword">new</span> LoadingFooter());</span><br><span class="line">	<span class="comment">// 定义CursorAdapter</span></span><br><span class="line">	CursorAdapter cursorAdapter = <span class="keyword">new</span> CursorAdapter()&#123;</span><br><span class="line">		<span class="comment">// 创建新的View</span></span><br><span class="line">		<span class="annotation">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> View <span class="title">newView</span><span class="params">(Context context, Cursor cursor, ViewGroup viewGroup)</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> LayoutInflater.from(context).inflate(R.layout.listitem, <span class="keyword">null</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 绑定数据</span></span><br><span class="line">		<span class="annotation">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bindView</span><span class="params">(View view, Context context, Cursor cursor)</span></span>&#123;</span><br><span class="line">			String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));</span><br><span class="line">       		String hasnumber = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));</span><br><span class="line">       		TextView tv_name = (TextView)view.findViewById(R.id.name);</span><br><span class="line">       		TextView tv_hasnumber = (TextView)view.findViewById(R.id.hasname);</span><br><span class="line">       		tv_name.setText(name);</span><br><span class="line">       		t_hasnumber.setText(hasnumber);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	mListView.addAdapter(cursorAdapter);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// implement LoaderManager.LoaderCallBacks&lt;Cursor&gt;</span></span><br><span class="line"><span class="comment">// 创建Loader&lt;Cursor&gt;回调，此处不在主线程中</span></span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Loader&lt;Cursor&gt; <span class="title">onCreateLoader</span><span class="params">(<span class="keyword">int</span> i, Bundle bundle)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> CursorLoader(getActivity(), </span><br><span class="line">				ContactsContract.Contacts.CONTENT_URI,</span><br><span class="line">				<span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 从sqllite中提取数据完毕回调</span></span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadFinished</span><span class="params">(Loader&lt;Cursor&gt; cursorLoader, Cursor cursor)</span></span>&#123;</span><br><span class="line">	((CursorAdapter)getAdapter()).changeCursor(cursor);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// reset</span></span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoaderRest</span><span class="params">(Loader&lt;Cursor&gt; cursorLoader)</span></span>&#123;</span><br><span class="line">	((CursorAdapter)getAdapter()).changeCursor(<span class="keyword">null</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  发生的异常为:<br>  tv_name 为 null</p>
+<p>  真机调试的结果：</p>
+<ul>
+<li>偶尔完美运行</li>
+<li>大部分情况是 listview中第一个item为空，上拉时发生空指针异常</li>
+</ul>
+</li>
+<li><p>0x02<br>  思考过程：</p>
+<ul>
+<li>1.tv_name之所以出现异常，肯定是因为参数中的view不是从R.layout.listitem中inflate过来的，直接将view.toString()输出到控制台<br>  结果为正常的view的是LinearLayout,不正常的view是FrameLayout。得证。</li>
+<li>2.是否是newView()函数调用的:debug发现，此view不是从newView中包括过来的。</li>
+<li>3.上拉时发生空指针异常是因为ListView对View复用的结果，第一个不包含tv_name的View被复用，导致下一次使用的时候发生空指针</li>
+<li>4.为什么第一次没有对这个额外的view进行bindView操作?</li>
+<li>5.这个View到底是从哪里来的？？？</li>
+</ul>
+</li>
+<li><p>0x03<br>  通过查阅CursorAdapter源代码，发现它在覆盖BaseAdapter的getView()时，先检查数据有效性，然后检查mCursor在position位置的有效性，然后如果convertView为空，则调用newView()函数，最后在convertView上绑定数据。所以，从理论上讲，那个额外的View应该是通过某个其他的途径生成，从而绕过了getView函数，否则不调用bindView。<br>  CursorAdapter的getView源码</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">    * <span class="doctag">@see</span> android.widget.ListAdapter#getView(int, View, ViewGroup)</span><br><span class="line">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (!mDataValid) &#123;</span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"this should only be called when the cursor is valid"</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (!mCursor.moveToPosition(position)) &#123;</span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"couldn't move cursor to position "</span> + position);</span><br><span class="line">       &#125;</span><br><span class="line">       View v;</span><br><span class="line">       <span class="keyword">if</span> (convertView == <span class="keyword">null</span>) &#123;</span><br><span class="line">           v = newView(mContext, mCursor, parent);</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           v = convertView;</span><br><span class="line">       &#125;</span><br><span class="line">       bindView(v, mContext, mCursor);</span><br><span class="line">       <span class="keyword">return</span> v;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>0x04<br>  最后经过排查发现mListView中的footerView有问题。理论上讲，footerView是不会被adapter生成的。但是巧的是，这个footerView中有一段和状态相关的动画。</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mLoadingText.animate().withLayer().alpha(<span class="number">1</span>).setDuration(mAnimationDuration);</span><br></pre></td></tr></table></figure>
+<p>  在动画没有完成之前，动画过程可能临时在mListView中添加了一个childView，这个childView没有经过adapter的getView()函数，因而没有tv_name这个TextView，所以就出现了第一个没有任何显示，也没有绑定数据的空view，因此出现NullPointerException。<br>  在footerView中插入一段文字，结果原先出bug时的空白部分显示出一段文字，验证我的猜想。</p>
+</li>
+<li><p>0x05<br>  如果在bindView中，检查tv_name是否存在，如果不存在，将view替换为自己新创建的有效的view会怎样？<br>  结果没有出现异常，但是新创建的有效的view也没有完成代替操作，这个view在listview中被重用，导致空白部分的位置随滚动变化。<br>  Over!</p>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/NullPointerError/">NullPointerError</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://logistic1994.github.io/2014/11/28/CursorAdapter出现空指针异常/" data-title="CursorAdapter出现空指针异常 | Logistic1994&#39;s Blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/02/28/My-dream/" title="My_dream">
+  <strong>上一篇：</strong><br/>
+  <span>
+  My_dream</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/11/18/python-http包/"  title="python-http包">
+ <strong>下一篇：</strong><br/> 
+ <span>python-http包
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Haskell/" title="Haskell">Haskell<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/LeetCode/" title="LeetCode">LeetCode<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Machine-Learning/" title="Machine Learning">Machine Learning<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/papers/" title="papers">papers<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/总结/" title="总结">总结<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/我自己/" title="我自己">我自己<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/每日任务/" title="每日任务">每日任务<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/零碎知识/" title="零碎知识">零碎知识<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Learn/" title="Learn">Learn<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Note/" title="Note">Note<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/summary/" title="summary">summary<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试/" title="面试">面试<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/我自己/" title="我自己">我自己<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Summary/" title="Summary">Summary<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MinHash/" title="MinHash">MinHash<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SimHash/" title="SimHash">SimHash<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LSH/" title="LSH">LSH<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LeetCode/" title="LeetCode">LeetCode<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LR/" title="LR">LR<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/naive-bayes/" title="naive bayes">naive bayes<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/过拟合/" title="过拟合">过拟合<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cluster-analyse/" title="Cluster analyse">Cluster analyse<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Experience/" title="Experience">Experience<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/dream/" title="dream">dream<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SVM/" title="SVM">SVM<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NullPointerError/" title="NullPointerError">NullPointerError<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cluster-analyse/" title="Cluster-analyse">Cluster-analyse<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> I&#39;m ZhurongXia in Alibaba. <br/>
+			Code more.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/xiazrong" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/logistic1994" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Logistic1994">Logistic1994</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

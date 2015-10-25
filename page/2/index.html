@@ -1,0 +1,1152 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Logistic1994&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Logistic1994">
+    
+
+    
+    <meta name="description" content="多写代码">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Logistic1994's Blog">
+<meta property="og:url" content="http://logistic1994.github.io/page/2/index.html">
+<meta property="og:site_name" content="Logistic1994's Blog">
+<meta property="og:description" content="多写代码">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Logistic1994's Blog">
+<meta name="twitter:description" content="多写代码">
+
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Logistic1994&#39;s Blog" title="Logistic1994&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Logistic1994&#39;s Blog">Logistic1994&#39;s Blog</a></h1>
+				<h2 class="blog-motto">CS. Data Science. Deep Learning. Others.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:logistic1994.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/11/SVM相关总结/" title="SVM相关总结" itemprop="url">SVM相关总结</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Logistic1994" target="_blank" itemprop="author">Logistic1994</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-11T05:28:37.000Z" itemprop="datePublished"> 发表于 2015-09-11</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="SVM分类的原理">SVM分类的原理</h1><p>SVM的主要思想大概有两类:</p>
+<ol>
+<li>针对线性可分的情况下进行分析与建模，而对于线性不可分的情况，通过使用非线性映射算法将低维空间的不可分的样本转化到高维空间中使得其线性可分</li>
+<li>在线性可分的空间构建最优分割平面，这里支持向量充当了非常重要的角色，另外soft margin的概念可以保证整个模型的风险不大于某个阈值</li>
+</ol>
+<h1 id="最优超平面">最优超平面</h1><p>最优超平面是使得每一类数据与超平面距离最近的一些向量与超平面之间距离最大化的一些平面。可以通过二次优化来做。实际情况下，通过将二次规划问题转化为其对偶问题，即拉格朗日算法。实际运用中使用SMO算法。</p>
+<h1 id="核函数">核函数</h1><p>假设我们知道通过某种方式将我们的数据样本映射到高维空间中能够实现线性可分。那么我们需要带入的数据就可以是对应的高维数据。而核函数的作用是，在计算中，$x$与$x’$之间的内积是需要计算，而对于高维空间中，$\phi (x)$与$\phi (x’)$的内积也是需要计算的。而我们恰好能够知道一种函数$K(\phi (x), \phi (x’))$能够在我们不需要知道$\phi (x)$的情况下，就能之间计算出高维下的内积，那么我们称这种函数为核函数。所以核函数并不是映射函数，而是有trick的求内积的函数。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/SVM/">SVM</a><a href="/tags/summary/">summary</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/09/防止过拟合的一些方法/" title="防止过拟合的一些方法" itemprop="url">防止过拟合的一些方法</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Logistic1994" target="_blank" itemprop="author">Logistic1994</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-09T03:58:39.000Z" itemprop="datePublished"> 发表于 2015-09-09</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>防止模型过拟合以及解决过拟合的一些方法</p>
+<h2 id="过拟合产生的原因">过拟合产生的原因</h2><ol>
+<li>样本数据有缺陷，由于分类决策面的不唯一，最终学习到过于复杂的决策面</li>
+<li>权值学习迭代的次数过多，拟合了样本数据中的噪音数据</li>
+</ol>
+<h2 id="过拟合的解决方法">过拟合的解决方法</h2><ol>
+<li>权值衰减,比如动量权值更新</li>
+<li>适当的stopping criterion</li>
+<li>验证数据</li>
+<li>交叉验证</li>
+<li>减少特征</li>
+<li>正则化</li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/过拟合/">过拟合</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/08/MinHash与SimHash比较/" title="Comparison of MinHash and SimHash" itemprop="url">Comparison of MinHash and SimHash</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Logistic1994" target="_blank" itemprop="author">Logistic1994</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-08T03:38:18.000Z" itemprop="datePublished"> 发表于 2015-09-08</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>This paper is <a href="http://jmlr.csail.mit.edu/proceedings/papers/v33/shrivastava14.pdf" title="In Defense of MinHash Over SimHash" target="_blank" rel="external">In Defense of MinHash Over SimHash</a>.In this paper, the author provide a theoretical answer that </p>
+<blockquote>
+<p>MinHash virtually always outperforms SimHash when the data are binary, as common in practice such as search</p>
+</blockquote>
+<h2 id="Extracts">Extracts</h2><p>1.</p>
+<blockquote>
+<p>The collision probability of MinHash is a function of resemblance similarity, while the collision probability of SimHash is a function of cosine similarity. </p>
+</blockquote>
+<p>The theory of Minhash is based on Probability, while SimHash is on division of high demision. Though they have same style of results, the meanings are totally different.</p>
+<p>2.</p>
+<blockquote>
+<p> Our worst case analysis can show that MinHash significantly outperm foerms SimHash in <strong>high similarity</strong> region. Our restricted worst case analysis by assuming $\frac{S}{z-S} \leq R \leq \frac{S}{2-S}$ shows that MinHash indeed significantly outperforms SimHash even in <strong>low similarity</strong> region</p>
+</blockquote>
+<p>3.</p>
+<blockquote>
+<p><strong>Fact</strong>: Given a family of $(S_0, cS_0, p_1, p_2)$-senstitive hash functions, one can construct a data structure for c-NN with $O(n^{\nu}log_{\frac{1}{p_2}}n)$ query time, where $\nu=\frac{logp_1}{logp_2}$<br>for MinHash, $Pr(h^{min}_{\pi}(W_1)=h^{min}_{\pi}(W_2))=\frac{\left| W_1 \cap W_2  \right|}{\left| W_1 \cup W_2 \right|}=R$, so MinHash is $(R_0, cR_0, R_0, cR_0)$ sensitive family of hash function.<br>for SimHash, $h^{sim}_w(x)=sign(w^Tx)$, $Pr(h^{sim}_{w}(x)=h^{sim}_{w}(y))=1-\frac{\theta}{\pi}$, where $\theta = cos^{-1}(\frac{x^Ty}{||x||_2 ||y||_2})$, so SimHash is $(S_0, cS_0, (1-\frac{cos^{-1}(S_0)}{\pi}), (1-\frac{cos^{-1}(cS_0)}{\pi}))$ sensitive family of hash function.</p>
+</blockquote>
+<h2 id="Understand">Understand</h2><p>As we all know, MinHash is defined over binary vectors, while SimHash is for real-valued data.What’s more, SimHash generates a single bit output whereas MinHash generates an integer value. For comparsion, the author create 1-bit MinWise Hashing, that is to check if $h^{min}_{\pi}(W_1)$ is odd or not.so this 1-bit MinWise Hashing can genearte a single bit as SimHash does.</p>
+<p>The author use $(S_0, cS_0, p_1, p_2)$ sensitive families and idealized case gap analysis to analyse the difference between MinHash and SimHash.</p>
+<hr>
+<p>2015.9.8 15:57 There is still some problems to be solved. For example, how the author apply SimHash, MinHash, 1-bit MinHash to mnist dataset.  </p>
+<hr>
+<p>2015.9.8 17:41 And SimHash is very hard to apply to comparsion of images, for the radio of the similarity of image features is very small, for smaller than documents. </p>
+<hr>
+<p>2015.9.8 20:31 Generally, MinHash and SimHash are created to process NLP. For images, visual words are necessary. How to generate visual words? If we use SIFT descriptors, collect as much SIFT descriptors as possible, then apply K-means so that we can get K centroids, we call that visual words. To a image, 100+ sift descriptors can be got. Compare each descriptor to K visual words and choose the closeset one. So an image(a document) can be shown as several visual words(words).Then we can easily use MinHash and SimHash.</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/papers/">papers</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/LSH/">LSH</a><a href="/tags/MinHash/">MinHash</a><a href="/tags/SimHash/">SimHash</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/07/12/Android编程的好习惯/" title="Android编程的好习惯" itemprop="url">Android编程的好习惯</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Logistic1994" target="_blank" itemprop="author">Logistic1994</a>
+		
+  <p class="article-time">
+    <time datetime="2015-07-12T02:55:05.000Z" itemprop="datePublished"> 发表于 2015-07-12</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <blockquote>
+<p>引用自知乎:<a href="http://www.zhihu.com/question/27227425" target="_blank" rel="external">大家有哪些好的Android习惯</a></p>
+</blockquote>
+<ol>
+<li><p>写一个抽象的BaseActivity.java，将初始化抽象为setContentView()、findViews()、getData()、showContent()这四个方法，所有的Activity都继承它：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span></span>&#123;</span><br><span class="line">    <span class="annotation">@Override</span> </span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123; </span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState); </span><br><span class="line">        init();</span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">        setContentView();</span><br><span class="line">        findViews();</span><br><span class="line">        getData();</span><br><span class="line">        showContent();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">setContentView</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">findViews</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">getData</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">showContent</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法返回值不返回null，返回空值，比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;String&gt; <span class="title">getFolderFiles</span><span class="params">( String folderPath )</span></span>&#123;</span><br><span class="line">    List&lt;String&gt; fileList = <span class="keyword">new</span> ArrayList&lt;String&gt;( );</span><br><span class="line">    <span class="keyword">if</span>( TextUtils.isEmpty( folderPath ) )&#123;</span><br><span class="line">        <span class="keyword">return</span> fileList;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    File file = <span class="keyword">new</span> File( folderPath );</span><br><span class="line">    <span class="keyword">if</span>( file.isDirectory( ) )&#123;</span><br><span class="line">        File[] files = file.listFiles( );</span><br><span class="line">        <span class="keyword">if</span>( <span class="keyword">null</span> != files )&#123;</span><br><span class="line">            fileList = <span class="keyword">new</span> ArrayList&lt;String&gt;( );</span><br><span class="line">            <span class="keyword">for</span>( File subFile : files )&#123;</span><br><span class="line">                fileList.add( subFile.getPath( ) );</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> fileList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在方法顶部做入参判断，入参异常直接返回，比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;String&gt; <span class="title">getAssertsFiles</span><span class="params">( Context context )</span></span>&#123;</span><br><span class="line">    List&lt;String&gt; assertsFileList = <span class="keyword">new</span> ArrayList&lt;String&gt;( );</span><br><span class="line">    <span class="keyword">if</span>( <span class="keyword">null</span> == context )&#123;</span><br><span class="line">        <span class="keyword">return</span> assertsFileList;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    AssetManager assetManager = context.getAssets();</span><br><span class="line">    String[] files = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        files = assetManager.list(<span class="string">""</span>);</span><br><span class="line">        assertsFileList = Arrays.asList( files );</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace( );</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> assertsFileList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用List、Map而不是ArrayList、HashMap声明成员变量、作为返回值、作为入参等等，尽量用抽象而不是具体实现。</p>
+</li>
+<li><p>在任何时候不使用类的finalize方法释放资源；</p>
+</li>
+<li><p>在finally中关闭文件流、cursor等等；</p>
+</li>
+<li><p>封装一个DebugUtils类来管理程序中所有的打印：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DebugUtils</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"Debug"</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">DebugUtils</span><span class="params">( )</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">println</span><span class="params">( String printInfo )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE &amp;&amp; <span class="keyword">null</span> != printInfo )&#123;</span><br><span class="line">            System.out.println( printInfo );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">( String printInfo )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE &amp;&amp; <span class="keyword">null</span> != printInfo )&#123;</span><br><span class="line">            System.out.print( printInfo );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogI</span><span class="params">( String logInfo )</span></span>&#123;</span><br><span class="line">        printLogI( TAG, logInfo );</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogI</span><span class="params">( String tag, String logInfo )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE &amp;&amp; <span class="keyword">null</span> != tag &amp;&amp; <span class="keyword">null</span> != logInfo )&#123;</span><br><span class="line">            Log.i( tag, logInfo );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogE</span><span class="params">( String logInfo )</span></span>&#123;</span><br><span class="line">        printLogE( TAG, logInfo );</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogE</span><span class="params">( String tag, String logInfo )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE &amp;&amp; <span class="keyword">null</span> != tag &amp;&amp; <span class="keyword">null</span> != logInfo )&#123;</span><br><span class="line">            Log.e( tag, logInfo );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogW</span><span class="params">( String logInfo )</span></span>&#123;</span><br><span class="line">        printLogW( TAG, logInfo );</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogW</span><span class="params">( String tag, String logInfo )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE &amp;&amp; <span class="keyword">null</span> != tag &amp;&amp; <span class="keyword">null</span> != logInfo )&#123;</span><br><span class="line">            Log.w( tag, logInfo );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogD</span><span class="params">( String logInfo )</span></span>&#123;</span><br><span class="line">        printLogD( TAG, logInfo );</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogD</span><span class="params">( String tag, String logInfo )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE &amp;&amp; <span class="keyword">null</span> != tag &amp;&amp; <span class="keyword">null</span> != logInfo )&#123;</span><br><span class="line">            Log.d( tag, logInfo );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogV</span><span class="params">( String logInfo )</span></span>&#123;</span><br><span class="line">        printLogV( TAG, logInfo );</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogV</span><span class="params">( String tag, String logInfo )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE &amp;&amp; <span class="keyword">null</span> != tag || <span class="keyword">null</span> != logInfo )&#123;</span><br><span class="line">            Log.v( tag, logInfo );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogWtf</span><span class="params">( String logInfo )</span></span>&#123;</span><br><span class="line">        printLogWtf( TAG, logInfo );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogWtf</span><span class="params">( String tag, String logInfo )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE &amp;&amp; <span class="keyword">null</span> != tag &amp;&amp; <span class="keyword">null</span> != logInfo )&#123;</span><br><span class="line">            Log.wtf( tag, logInfo );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showToast</span><span class="params">( Context context, String toastInfo )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( <span class="keyword">null</span> != context &amp;&amp; <span class="keyword">null</span> != toastInfo )&#123;</span><br><span class="line">            Toast.makeText( context, toastInfo, Toast.LENGTH_LONG ).show( );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showToast</span><span class="params">( Context context, String toastInfo, <span class="keyword">int</span> timeLen )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( <span class="keyword">null</span> != context &amp;&amp; <span class="keyword">null</span> != toastInfo &amp;&amp; ( timeLen &gt; <span class="number">0</span> ) )&#123;</span><br><span class="line">            Toast.makeText( context, toastInfo, timeLen ).show( );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printBaseInfo</span><span class="params">( )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE )&#123;</span><br><span class="line">            StringBuffer strBuffer = <span class="keyword">new</span> StringBuffer( );</span><br><span class="line">            StackTraceElement[ ] stackTrace = <span class="keyword">new</span> Throwable( ).getStackTrace( );</span><br><span class="line"></span><br><span class="line">            strBuffer.append( <span class="string">"; class:"</span> ).append( stackTrace[ <span class="number">1</span> ].getClassName( ) )</span><br><span class="line">                    .append( <span class="string">"; method:"</span> ).append( stackTrace[ <span class="number">1</span> ].getMethodName( ) )</span><br><span class="line">                    .append( <span class="string">"; number:"</span> ).append( stackTrace[ <span class="number">1</span> ].getLineNumber( ) )</span><br><span class="line">                    .append( <span class="string">"; fileName:"</span> ).append( stackTrace[ <span class="number">1</span> ].getFileName( ) );</span><br><span class="line"></span><br><span class="line">            println( strBuffer.toString( ) );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printFileNameAndLinerNumber</span><span class="params">( )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE )&#123;</span><br><span class="line">            StringBuffer strBuffer = <span class="keyword">new</span> StringBuffer( );</span><br><span class="line">            StackTraceElement[ ] stackTrace = <span class="keyword">new</span> Throwable( ).getStackTrace( );</span><br><span class="line"></span><br><span class="line">            strBuffer.append( <span class="string">"; fileName:"</span> ).append( stackTrace[ <span class="number">1</span> ].getFileName( ) )</span><br><span class="line">                    .append( <span class="string">"; number:"</span> ).append( stackTrace[ <span class="number">1</span> ].getLineNumber( ) );</span><br><span class="line"></span><br><span class="line">            println( strBuffer.toString( ) );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">printLineNumber</span><span class="params">( )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE )&#123;</span><br><span class="line">            StringBuffer strBuffer = <span class="keyword">new</span> StringBuffer( );</span><br><span class="line">            StackTraceElement[ ] stackTrace = <span class="keyword">new</span> Throwable( ).getStackTrace( );</span><br><span class="line"></span><br><span class="line">            strBuffer.append( <span class="string">"; number:"</span> ).append( stackTrace[ <span class="number">1</span> ].getLineNumber( ) );</span><br><span class="line"></span><br><span class="line">            println( strBuffer.toString( ) );</span><br><span class="line">            <span class="keyword">return</span> stackTrace[ <span class="number">1</span> ].getLineNumber( );</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printMethod</span><span class="params">( )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE )&#123;</span><br><span class="line">            StringBuffer strBuffer = <span class="keyword">new</span> StringBuffer( );</span><br><span class="line">            StackTraceElement[ ] stackTrace = <span class="keyword">new</span> Throwable( ).getStackTrace( );</span><br><span class="line"></span><br><span class="line">            strBuffer.append( <span class="string">"; number:"</span> ).append( stackTrace[ <span class="number">1</span> ].getMethodName( ) );</span><br><span class="line"></span><br><span class="line">            println( strBuffer.toString( ) );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printFileNameAndLinerNumber</span><span class="params">( String printInfo )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( <span class="keyword">null</span> == printInfo || !Debug.DEBUG_MODE )&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuffer strBuffer = <span class="keyword">new</span> StringBuffer( );</span><br><span class="line">        StackTraceElement[ ] stackTrace = <span class="keyword">new</span> Throwable( ).getStackTrace( );</span><br><span class="line"></span><br><span class="line">        strBuffer.append( <span class="string">"; fileName:"</span> ).append( stackTrace[ <span class="number">1</span> ].getFileName( ) )</span><br><span class="line">                .append( <span class="string">"; number:"</span> ).append( stackTrace[ <span class="number">1</span> ].getLineNumber( ) ).append( <span class="string">"\n"</span> )</span><br><span class="line">                .append( ( <span class="keyword">null</span> != printInfo ) ? printInfo : <span class="string">""</span> );</span><br><span class="line"></span><br><span class="line">        println( strBuffer.toString( ) );</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showStrictMode</span><span class="params">( )</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (DebugUtils.Debug.DEBUG_MODE) &#123;</span><br><span class="line">            StrictMode.setThreadPolicy(<span class="keyword">new</span> StrictMode.ThreadPolicy.Builder()</span><br><span class="line">                    .detectDiskReads().detectDiskWrites().detectNetwork().penaltyLog().build());</span><br><span class="line">            StrictMode.setVmPolicy(<span class="keyword">new</span> StrictMode.VmPolicy.Builder()</span><br><span class="line">                    .detectLeakedSqlLiteObjects().detectLeakedClosableObjects().penaltyLog().penaltyDeath().build());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">d</span><span class="params">(String tag, String msg)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(DebugUtils.Debug.DEBUG_MODE)&#123;</span><br><span class="line">            Log.d(tag, msg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Debug</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">boolean</span> DEBUG_MODE = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>静态类的构造方法私有化，具体实例参见7；</p>
+</li>
+<li><p>没有必要用硬件加速的页面在AndroidMainfest.xml中将其关掉</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;10. &#22312;&#27809;&#26377;&#20351;&#29992;&#21040;&#22810;&#28857;&#35302;&#25511;&#30340;&#39029;&#38754;&#65292;&#36890;&#36807;&#22312;&#20027;&#39064;&#20013;&#35774;&#32622;&#19979;&#21015;&#20004;&#20010;&#23646;&#24615;&#23558;&#22810;&#28857;&#35302;&#25511;&#20851;&#25481;&#65306;&#10;``` xml&#10;&#60;item name=&#34;android:windowEnableSplitTouch&#34;&#62;false&#60;/item&#62;&#10;&#60;item name=&#34;android:splitMotionEvents&#34;&#62;false&#60;/item&#62;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定义一个防止视图重复点击的静态类，在需要做防止重复点击的地方加上该判断：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BtnClickUtils</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> mLastClickTime = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">BtnClickUtils</span><span class="params">( )</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isFastDoubleClick</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> time = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">long</span> timeD = time - mLastClickTime;</span><br><span class="line">        <span class="keyword">if</span> ( <span class="number">0</span> &lt; timeD &amp;&amp; timeD &lt; <span class="number">500</span>) &#123;   </span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;   </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        mLastClickTime = time;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在布局中使用LinearLayout的android:weight属性时，将view的android:layout_width属性设置为0dp；</p>
+</li>
+<li><p>涉及到APP的核心数据全部加密处理，在使用的时候解密；</p>
+</li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/习惯/">习惯</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/03/13/2015年3月13日阿里数据挖掘工程师电话面试总结/" title="2015年3月13日阿里电话面试总结" itemprop="url">2015年3月13日阿里电话面试总结</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Logistic1994" target="_blank" itemprop="author">Logistic1994</a>
+		
+  <p class="article-time">
+    <time datetime="2015-03-13T15:18:09.000Z" itemprop="datePublished"> 发表于 2015-03-13</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="kmeans算法中的k如何确定？">kmeans算法中的k如何确定？</h1><ol>
+<li>Rule of thumb: $k\sqrt{\frac{n}{2}}$</li>
+<li>BIC指标: $BIC(C|X) = L(X|C) - \frac{p}{2}log(n)$</li>
+<li>The Elbow Method: Parent of variance explained against the Number of clusters.这个方法论文没有看懂到底是什么意思。</li>
+<li>对每个类进行假设检验是否为正态分布，事实上与方法2有共通之处。</li>
+</ol>
+<h1 id="一个算法题：">一个算法题：</h1><p>开始时有一个农夫，农夫有两个选择，分裂或者造房子，已知分裂时间是s，造房子时间是b，但是造房子的话农夫会死掉，问要造N个房子最优需要多少时间？如果没有最优解，能不能给一个较优解。<br>如果每次造房子的时间不是固定，房子需要的时间有${b_0, b_1, b_2, …, b_n}$，上面的较优解又应该如何得到？<br>对于第一问的话，首先最直观的感受是先让农民一直分裂，知道农民的个数$N_f &gt; N$，那么此时$N_f$一定是2的幂次方。然后再让$N$个农民造房子，一定是最短时间。证明的话可以用反证法来证明。如果在最优解分裂次数之前就让某一个农民去造房子了，那么这个农民必死，同时以这个农民为根的树上至少还差一个房子（至少是因为如果这个农民分裂一次，那就会多一个人造房子当然，如果这棵树所有的叶子-1在最优解的情况下也没有造房子的话，这种情况不包含在前面所说的假设里），此时若最下层叶子节点够，那么好商量，让空闲的农民去造房子便是，如果不够，那么必然还需要再分裂一次。此时和最优解相比就会多出一次造房子的时间。<br>对于第二问，猜想可以用推广的哈夫曼树来实现。这个推广的哈夫曼树建立完后，建设时间较长的房子会自动排在靠前的叶子节点上。这种方法即使不是一个最优解，也起码是一个较优解。（待证明）</p>
+<h1 id="中午交流的时候：如何在大规模社交网络中实现六度空间？">中午交流的时候：如何在大规模社交网络中实现六度空间？</h1><p>现在还是倾向于使用暴力搜索的方式，假设不考虑硬盘空间，用离线搜索。<br>先对每个人建立一级好友。然后再对每个人建立二级好友。然后是三级好友。那么每个人的潜在或者直接好友全部计算出来后，若想对A和B建立联系，那么直接拿他们的潜在或者直接好友去做交集便可。假设一个人有200个好友，那么潜在或者直接好友有200<em>200</em>200=8,000,000个，每个好友需要一个整形数来便是是32bit=4byte，那么每个人需要4<em>8,000,000=32,000,000bytes=32,000kB=32MB，假设腾讯有10亿用户，1,000,000,000 </em> 32M = 32PB…，我不说话了/(ㄒoㄒ)/~~</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/总结/">总结</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/我自己/">我自己</a><a href="/tags/面试/">面试</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/03/09/2015年3月4日阿里数据挖掘工程师电话面试总结/" title="2015年3月4日阿里数据挖掘工程师电话面试总结" itemprop="url">2015年3月4日阿里数据挖掘工程师电话面试总结</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Logistic1994" target="_blank" itemprop="author">Logistic1994</a>
+		
+  <p class="article-time">
+    <time datetime="2015-03-09T14:38:20.000Z" itemprop="datePublished"> 发表于 2015-03-09</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>下面对面试官所问的一些问题做汇总：</p>
+<h3 id="1-Feature，即特征是什么？">1.Feature，即特征是什么？</h3><p>他原本问我的是我做的数字识别里面的特征是什么，以我之前对特征的理解，比如神经网络，我认为是参数层所表达的便是特征。因此，我才不能明白他所说的特征到底是什么含义。<br>现在我知道了，特征便是输入数据。描述一个苹果的特征包括苹果的大小、味道、颜色等，这些叫做特征。对于神经网络，每一层的输入都可以称为特征，只不过有些特征不能很明白地讲明白而已。</p>
+<h3 id="2-Logistic_Regression,_为什么是这样的回归？">2.Logistic Regression, 为什么是这样的回归？</h3><p>Logistic Regression表面上是回归，实际上却是做的分类相关的东西。Logistic Regression的输出是有统计含义的，可以表述为y=+1的概率。在我们对数据特征进行加权求和后，为了将其变换为y=+1的概率，需要一种能从$[-\infty,+\infty]$转换到$[0,1]$上的函数，比如sigmoid函数。<br>那为什么使用sigmoid函数呢，那就是Generalized Linear Model所解决的问题了。<br>能否使用最小方均误差进行最小化呢？最好不，因为最小方均误差的$function$是非凸函数。<br>一般我们使用Cross-Entropy Error，交叉熵误差进行最小化。</p>
+<h3 id="3-有哪些距离公式？他们的优点和缺点是什么?">3.有哪些距离公式？他们的优点和缺点是什么?</h3><p>1.欧几里得距离<br>需要将数据标准化，以避免量纲不同导致的错误。<br>优点：简单<br>缺点：没有考虑分量之间的相关性<br>2.马氏距离<br>如果分量之间有相关性，那么就需要使用协方差矩阵来消除相关性。<br>3.闽科夫斯基距离——欧式距离的推广<br>4.曼哈顿距离，$p=1$<br>5.切比雪夫距离，$p=\infty$<br>6.汉明距离<br>7.Jaccard系数<br>一般使用集合表示。<br>8.Tanimoto系数(广义Jaccard系数)<br>9.皮尔逊相关系数<br>特征减去均值后的余弦相似度。<br>10.余弦相似度<br>11.调整余弦相似度<br>12.基于权重的距离<br>13.KL散度<br>用于计算两个概率之间的距离。</p>
+<h3 id="4-除了K-means，你还知道哪些聚类算法？">4.除了K-means，你还知道哪些聚类算法？</h3><p>1 Partitioning approach<br>包括 K-means, K-medoids<br>2 Model-based<br>有GMM(混合高斯模型)<br>3 Dimensionality Reduction Approach<br>先降维，后聚类<br>包括 Spectral Clustering(谱聚类), Ncut<br>4 一些层次聚类算法(不需要熟悉)</p>
+<p>K-means和GMM比较<br>1 K-means的目标函数是最小化Total Squared Distance，而GMM是最大化似然函数<br>2 两者都可以使用EM算法来解决问题<br>3 K-means要求类与类分布函数是相同的，而GMM不要求</p>
+<h3 id="5-K-means中的类别数N如何确定">5.K-means中的类别数N如何确定</h3><p>1 经验<br>2 在某个空间内对K逐一鉴别，找出最好的k<br>3 使用一些能自动判定K的聚类方法，比如G-means</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/总结/">总结</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/我自己/">我自己</a><a href="/tags/面试/">面试</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/03/02/Apache之AllowOverride/" title="Apache之AllowOverride" itemprop="url">Apache之AllowOverride</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Logistic1994" target="_blank" itemprop="author">Logistic1994</a>
+		
+  <p class="article-time">
+    <time datetime="2015-03-02T03:11:04.000Z" itemprop="datePublished"> 发表于 2015-03-02</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>AllowOverride参数就是指明Apache服务器是否去找.htaccess文件作为配置文件。如果设置为none，那么服务器将直接忽略.htaccess文件，如果设置为all，那么所有在.htaccess中的指令都将被重写。</p>
+<p>下面是具体的一些参数的解释：</p>
+<ol>
+<li>AuthConfig：允许使用所有的权限指令</li>
+<li>FileInfo：允许使用文件控制类型的指令</li>
+<li>Indexes：允许使用目录控制类型的指令</li>
+<li>Limit：允许使用权限控制指令，Allow Deny和Order</li>
+<li>Options：允许使用控制目录特征的指令，包括Options和XBitHack</li>
+</ol>
+<p>对于Options：</p>
+<ol>
+<li>All：允许以下除了MultiViews之外的所有功能</li>
+<li>MultiViews：允许多重内容被浏览</li>
+<li>Indexes：如果没有index文件，那么就显示目录</li>
+<li>IncludesNOEXEC：允许SSI，但是不可以使用EXEC和INCLUDE指令</li>
+<li>Includes：允许SSI</li>
+<li>FollowSymLinks：跟踪符号链接</li>
+<li>SymLinksIfOwnerMatch：仅仅跟踪本文件内的符号链接</li>
+<li>ExecCGI：允许使用CGI</li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/零碎知识/">零碎知识</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/AllowOverride/">AllowOverride</a><a href="/tags/Apache/">Apache</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/02/28/My-dream/" title="My_dream" itemprop="url">My_dream</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Logistic1994" target="_blank" itemprop="author">Logistic1994</a>
+		
+  <p class="article-time">
+    <time datetime="2015-02-28T12:25:26.000Z" itemprop="datePublished"> 发表于 2015-02-28</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>我好像不喜欢写代码。</p>
+<p>我很早就发现这个事实了，只不过我一直不愿意承认罢了。我真的一点也不喜欢写代码！之所以一直没有放弃写代码是因为发现自己对于写代码有种天赋，却不是我喜欢的天赋，真是讽刺。</p>
+<p>我心急，我焦虑，我把火气转移到别人身上。我看到自己的长处却不知道如何使用。我考研吗？不！我继续上学吗？不！那么我是否应该继续写代码？不知道。这是我以前一直做的事情，用“不知道”来麻痹自己，用“再说吧”来隐藏自己。现在是北京时间2015年2月28日20点35分。明天我就要回学校了。那么我能不能再对自己说“不知道”或者“再说吧”了呢？</p>
+<p>不！这回我要说，不！</p>
+<p>为了我自己以后的工作，前途，为了自己的婚姻，更是为了自己。我必须对自己说，“你是个喜欢写代码的人！”。是的，我是个喜欢写代码的人。我记得初中的时候写VB时的快乐和痛苦，我记得高中买C语言书然后当宝贝包起来的事，我记得大一用win32写GUI的痛苦，我记得写VHDL模拟器的神速和自学各种语言给自己的优越感，我记得自己从鄙视其他语言到能够客观地比较各类语言从而让自己选择最佳语言编程的经历，我更记得被叫过“大神”来的愉悦到无视的过程。我和代码这辈子已经结下梁子了，喜欢、憎恶，各种情绪涌上心头。我在乎为什么我自己没有更早一点有一台自己的计算机，我在乎为什么我没有做到和同龄人一样的成就，我在乎为什么我总是怨天尤人，我在乎为什么我如此不在乎自己写的代码，我在乎为什么我讨厌自己。</p>
+<p>因为我不够努力。</p>
+<p>而现在，我要努力。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/我自己/">我自己</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/dream/">dream</a><a href="/tags/我自己/">我自己</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/11/28/CursorAdapter出现空指针异常/" title="CursorAdapter出现空指针异常" itemprop="url">CursorAdapter出现空指针异常</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Logistic1994" target="_blank" itemprop="author">Logistic1994</a>
+		
+  <p class="article-time">
+    <time datetime="2014-11-28T05:28:19.000Z" itemprop="datePublished"> 发表于 2014-11-28</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <ul>
+<li><p>0x01<br>  使用Loader<cursor>配合CursorAdapter时遇到NullPointerException。<br>  代码精简后如下：</cursor></p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> ListView mListView;</span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)</span></span>&#123;</span><br><span class="line">	mListView = getListView();</span><br><span class="line">	mListView.addFootHeader(<span class="keyword">new</span> LoadingFooter());</span><br><span class="line">	<span class="comment">// 定义CursorAdapter</span></span><br><span class="line">	CursorAdapter cursorAdapter = <span class="keyword">new</span> CursorAdapter()&#123;</span><br><span class="line">		<span class="comment">// 创建新的View</span></span><br><span class="line">		<span class="annotation">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> View <span class="title">newView</span><span class="params">(Context context, Cursor cursor, ViewGroup viewGroup)</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> LayoutInflater.from(context).inflate(R.layout.listitem, <span class="keyword">null</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 绑定数据</span></span><br><span class="line">		<span class="annotation">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bindView</span><span class="params">(View view, Context context, Cursor cursor)</span></span>&#123;</span><br><span class="line">			String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));</span><br><span class="line">       		String hasnumber = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));</span><br><span class="line">       		TextView tv_name = (TextView)view.findViewById(R.id.name);</span><br><span class="line">       		TextView tv_hasnumber = (TextView)view.findViewById(R.id.hasname);</span><br><span class="line">       		tv_name.setText(name);</span><br><span class="line">       		t_hasnumber.setText(hasnumber);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	mListView.addAdapter(cursorAdapter);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// implement LoaderManager.LoaderCallBacks&lt;Cursor&gt;</span></span><br><span class="line"><span class="comment">// 创建Loader&lt;Cursor&gt;回调，此处不在主线程中</span></span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Loader&lt;Cursor&gt; <span class="title">onCreateLoader</span><span class="params">(<span class="keyword">int</span> i, Bundle bundle)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> CursorLoader(getActivity(), </span><br><span class="line">				ContactsContract.Contacts.CONTENT_URI,</span><br><span class="line">				<span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 从sqllite中提取数据完毕回调</span></span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadFinished</span><span class="params">(Loader&lt;Cursor&gt; cursorLoader, Cursor cursor)</span></span>&#123;</span><br><span class="line">	((CursorAdapter)getAdapter()).changeCursor(cursor);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// reset</span></span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoaderRest</span><span class="params">(Loader&lt;Cursor&gt; cursorLoader)</span></span>&#123;</span><br><span class="line">	((CursorAdapter)getAdapter()).changeCursor(<span class="keyword">null</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  发生的异常为:<br>  tv_name 为 null</p>
+<p>  真机调试的结果：</p>
+<ul>
+<li>偶尔完美运行</li>
+<li>大部分情况是 listview中第一个item为空，上拉时发生空指针异常</li>
+</ul>
+</li>
+<li><p>0x02<br>  思考过程：</p>
+<ul>
+<li>1.tv_name之所以出现异常，肯定是因为参数中的view不是从R.layout.listitem中inflate过来的，直接将view.toString()输出到控制台<br>  结果为正常的view的是LinearLayout,不正常的view是FrameLayout。得证。</li>
+<li>2.是否是newView()函数调用的:debug发现，此view不是从newView中包括过来的。</li>
+<li>3.上拉时发生空指针异常是因为ListView对View复用的结果，第一个不包含tv_name的View被复用，导致下一次使用的时候发生空指针</li>
+<li>4.为什么第一次没有对这个额外的view进行bindView操作?</li>
+<li>5.这个View到底是从哪里来的？？？</li>
+</ul>
+</li>
+<li><p>0x03<br>  通过查阅CursorAdapter源代码，发现它在覆盖BaseAdapter的getView()时，先检查数据有效性，然后检查mCursor在position位置的有效性，然后如果convertView为空，则调用newView()函数，最后在convertView上绑定数据。所以，从理论上讲，那个额外的View应该是通过某个其他的途径生成，从而绕过了getView函数，否则不调用bindView。<br>  CursorAdapter的getView源码</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">    * <span class="doctag">@see</span> android.widget.ListAdapter#getView(int, View, ViewGroup)</span><br><span class="line">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (!mDataValid) &#123;</span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"this should only be called when the cursor is valid"</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (!mCursor.moveToPosition(position)) &#123;</span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"couldn't move cursor to position "</span> + position);</span><br><span class="line">       &#125;</span><br><span class="line">       View v;</span><br><span class="line">       <span class="keyword">if</span> (convertView == <span class="keyword">null</span>) &#123;</span><br><span class="line">           v = newView(mContext, mCursor, parent);</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           v = convertView;</span><br><span class="line">       &#125;</span><br><span class="line">       bindView(v, mContext, mCursor);</span><br><span class="line">       <span class="keyword">return</span> v;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>0x04<br>  最后经过排查发现mListView中的footerView有问题。理论上讲，footerView是不会被adapter生成的。但是巧的是，这个footerView中有一段和状态相关的动画。</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mLoadingText.animate().withLayer().alpha(<span class="number">1</span>).setDuration(mAnimationDuration);</span><br></pre></td></tr></table></figure>
+<p>  在动画没有完成之前，动画过程可能临时在mListView中添加了一个childView，这个childView没有经过adapter的getView()函数，因而没有tv_name这个TextView，所以就出现了第一个没有任何显示，也没有绑定数据的空view，因此出现NullPointerException。<br>  在footerView中插入一段文字，结果原先出bug时的空白部分显示出一段文字，验证我的猜想。</p>
+</li>
+<li><p>0x05<br>  如果在bindView中，检查tv_name是否存在，如果不存在，将view替换为自己新创建的有效的view会怎样？<br>  结果没有出现异常，但是新创建的有效的view也没有完成代替操作，这个view在listview中被重用，导致空白部分的位置随滚动变化。<br>  Over!</p>
+</li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/NullPointerError/">NullPointerError</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/11/18/python-http包/" title="python-http包" itemprop="url">python-http包</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Logistic1994" target="_blank" itemprop="author">Logistic1994</a>
+		
+  <p class="article-time">
+    <time datetime="2014-11-18T13:26:07.000Z" itemprop="datePublished"> 发表于 2014-11-18</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>httplib:(renamed to http.client in Python3)<br>    实现了http和https协议<br>    一般不被直接使用，urllib建立在其之上<br>    https是否能被支持仅当socket能否支持https</p>
+<p>urllib(在python3后被细化到urllib.request,urllib.parse和urllib.error):<br>    通过url打开资源<br>    编码解码</p>
+<p>urllib2:(在python3后被细化到urllib.request和urllib.error)<br>    urllib的扩展库<br>    增加认证、重定向、响应时间和cookie功能等<br>    可以接受一个Request类的实例来设置URL请求的header</p>
+<p>urllib3:(not offical)<br>    urllib2的扩展库<br>    提供连接池和文件post功能</p>
+<p>requests:(not offical)<br>    based on urllib3<br>    build for human beings</p>
+<p>httplib2:(not offical, by google)<br>    实现了httplib没有实现的一些功能<br>    目的是代替httplib,to become a worthy addition to the standard Python library.</p>
+<p>1.http/https get 无参数<br>2.http/https get 带参数<br>3.http/https post 无数据<br>4.http/https post 带数据</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/python/">python</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next<span></span></a>
+  </nav>
+
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Haskell/" title="Haskell">Haskell<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/LeetCode/" title="LeetCode">LeetCode<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Machine-Learning/" title="Machine Learning">Machine Learning<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/papers/" title="papers">papers<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/总结/" title="总结">总结<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/我自己/" title="我自己">我自己<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/每日任务/" title="每日任务">每日任务<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/零碎知识/" title="零碎知识">零碎知识<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Learn/" title="Learn">Learn<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Note/" title="Note">Note<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/summary/" title="summary">summary<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试/" title="面试">面试<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/我自己/" title="我自己">我自己<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Summary/" title="Summary">Summary<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MinHash/" title="MinHash">MinHash<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SimHash/" title="SimHash">SimHash<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LSH/" title="LSH">LSH<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LeetCode/" title="LeetCode">LeetCode<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LR/" title="LR">LR<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/naive-bayes/" title="naive bayes">naive bayes<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/过拟合/" title="过拟合">过拟合<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cluster-analyse/" title="Cluster analyse">Cluster analyse<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Experience/" title="Experience">Experience<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/dream/" title="dream">dream<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SVM/" title="SVM">SVM<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NullPointerError/" title="NullPointerError">NullPointerError<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cluster-analyse/" title="Cluster-analyse">Cluster-analyse<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> I&#39;m ZhurongXia in Alibaba. <br/>
+			Code more.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/xiazrong" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/logistic1994" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Logistic1994">Logistic1994</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+ </html>

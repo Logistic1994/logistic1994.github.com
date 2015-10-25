@@ -1,0 +1,625 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Haskell 1 | Logistic1994&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Logistic1994">
+    
+
+    
+    <meta name="description" content="From “A Gentle Introduction to Haskell 98”
+学习一门函数式编程，以作为我大学的纪念。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Haskell 1">
+<meta property="og:url" content="http://logistic1994.github.io/2015/09/24/Haskell-1/index.html">
+<meta property="og:site_name" content="Logistic1994's Blog">
+<meta property="og:description" content="From “A Gentle Introduction to Haskell 98”
+学习一门函数式编程，以作为我大学的纪念。">
+<meta property="og:updated_time" content="2015-10-25T08:44:51.909Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Haskell 1">
+<meta name="twitter:description" content="From “A Gentle Introduction to Haskell 98”
+学习一门函数式编程，以作为我大学的纪念。">
+
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Logistic1994&#39;s Blog" title="Logistic1994&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Logistic1994&#39;s Blog">Logistic1994&#39;s Blog</a></h1>
+				<h2 class="blog-motto">CS. Data Science. Deep Learning. Others.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:logistic1994.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/24/Haskell-1/" title="Haskell 1" itemprop="url">Haskell 1</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Logistic1994" target="_blank" itemprop="author">Logistic1994</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-24T08:53:00.000Z" itemprop="datePublished"> 发表于 2015-09-24</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Values,_Types_and_Other_Goodies"><span class="toc-number">1.</span> <span class="toc-text">Values, Types and Other Goodies</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Polymorphic_types"><span class="toc-number">1.1.</span> <span class="toc-text">Polymorphic types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-Defined_Types"><span class="toc-number">1.2.</span> <span class="toc-text">User-Defined Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Type_Synonyms"><span class="toc-number">1.3.</span> <span class="toc-text">Type Synonyms</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Functions"><span class="toc-number">2.</span> <span class="toc-text">Functions</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#List_Comprehensions_and_Arithmetic_Sequences"><span class="toc-number">2.1.</span> <span class="toc-text">List Comprehensions and Arithmetic Sequences</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Functions-1"><span class="toc-number">2.2.</span> <span class="toc-text">Functions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda_Abstractions"><span class="toc-number">2.3.</span> <span class="toc-text">Lambda Abstractions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Infix_Operators_中缀操作符"><span class="toc-number">2.4.</span> <span class="toc-text">Infix Operators 中缀操作符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sections_切片"><span class="toc-number">2.5.</span> <span class="toc-text">Sections 切片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Functions_are_Non-strict"><span class="toc-number">2.6.</span> <span class="toc-text">Functions are Non-strict</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Infinite_Data_Structures"><span class="toc-number">2.7.</span> <span class="toc-text">Infinite Data Structures</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The_error_function"><span class="toc-number">2.8.</span> <span class="toc-text">The error function</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p><em>From “A Gentle Introduction to Haskell 98”</em></p>
+<p><strong>学习一门函数式编程，以作为我大学的纪念。</strong></p>
+<a id="more"></a>
+<h1 id="Values,_Types_and_Other_Goodies">Values, Types and Other Goodies</h1><p>Evaluation of expressions(syntactic terms) to yield values.<br>Every value has an associated type.<br>Just as expressions denote values, type expression are syntactic terms that denote type values(or just types).<br>All Haskell values are <strong>“first-class”</strong>.<br>Haskell’s static type system defines the formal relationship between types and values, which ensures <em>type safe</em>.</p>
+<h2 id="Polymorphic_types">Polymorphic types</h2><p><code>[Char]</code> can be derived from <code>[a]</code>，其中<code>a</code>的意思是任意一种型别。 但是对操作数组的函数来说，比如<code>length</code>，不应该考虑这个数组是装什么类型的数组。</p>
+<p>list <code>[1, 2, 3]</code> is actually <code>1:(2:(3:[]))</code> =&gt; <code>1:2:3:[]</code>, for <code>:</code> is right associative.</p>
+<p><strong>pattern matching</strong><br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">length</span>      :: [a] -&gt; <span class="type">Integer</span> <span class="comment">-- 输入任意type的数组，输出一个整数</span></span><br><span class="line"><span class="title">length</span> []   = <span class="number">0</span></span><br><span class="line"><span class="title">length</span> (x: xs)  = <span class="number">1</span> + length xs</span><br></pre></td></tr></table></figure></p>
+<p>其中，匹配empty list以及non-empty list的过程叫pattern matching</p>
+<p><strong>Hindley-Milner type system</strong><br>Haskell的类型系统，是基于$\lambda$演算与参数多态的经典类型系统。</p>
+<h2 id="User-Defined_Types">User-Defined Types</h2><figure class="highlight hs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="typedef"><span class="keyword">data</span> <span class="type">Color</span> = <span class="type">Red</span> | <span class="type">Green</span> | <span class="type">Blue</span> | <span class="type">Indigo</span> | <span class="type">Violet</span></span></span><br><span class="line"><span class="typedef"><span class="keyword">data</span> <span class="type">Point</span> a = <span class="type">Pt</span> a a</span></span><br><span class="line"><span class="typedef"><span class="keyword">data</span> <span class="type">Tree</span> a = <span class="type">Leaf</span> a | </span></span><br><span class="line">            <span class="type">Branch</span> (<span class="type">Tree</span> a) (<span class="type">Tree</span> a)</span><br><span class="line"><span class="typedef"><span class="keyword">data</span> <span class="type">Shape</span> = <span class="type">Circle</span> <span class="type">Float</span> | <span class="type">Rectangle</span> <span class="type">Float</span> <span class="type">Float</span> <span class="keyword">deriving</span> <span class="container">(<span class="type">Show</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p>其中<code>Red</code>被称为一个 <em>data constructor</em>, <code>Color</code>被称为一个 <em>type constructor</em><br><code>Point</code>被称为<code>tuple type</code><br><code>Tree</code>是<code>recursive type</code><br>It is important to distinguish between applying a data constructor to yield a value, and applying a type constructor to yield a type.</p>
+<p>另一种自定义类型的方法<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="typedef"><span class="keyword">data</span> <span class="type">Person</span> = <span class="type">Person</span> <span class="container">&#123;</span><br><span class="line">        <span class="title">firstName</span>:: <span class="type">String</span>, </span><br><span class="line">        <span class="title">lastName</span>:: <span class="type">String</span>,</span><br><span class="line">        <span class="title">age</span>:: <span class="type">Int</span>,</span><br><span class="line">        <span class="title">height</span>:: <span class="type">Float</span>,</span><br><span class="line">        <span class="title">phoneNumber</span>:: <span class="type">String</span>,</span><br><span class="line">        <span class="title">flavor</span>:: <span class="type">String</span></span><br><span class="line">    &#125;</span> <span class="keyword">deriving</span> <span class="container">(<span class="type">Show</span>)</span></span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="typedef"><span class="keyword">data</span> <span class="type">Tree</span> a = <span class="type">Leaf</span> a | <span class="type">Branch</span> <span class="container">(<span class="type">Tree</span> <span class="title">a</span>)</span> <span class="container">(<span class="type">Tree</span> <span class="title">a</span>)</span></span></span><br><span class="line"><span class="title">fringe</span>      :: <span class="type">Tree</span> a -&gt; [a]</span><br><span class="line"><span class="title">fringe</span> (<span class="type">Leaf</span> x) = [x]</span><br><span class="line"><span class="title">fringe</span> (<span class="type">Branch</span> left right) = (fringe left) ++ (fringe right)</span><br></pre></td></tr></table></figure>
+<h2 id="Type_Synonyms">Type Synonyms</h2><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="typedef"><span class="keyword">type</span> <span class="type">String</span>     = [<span class="type">Char</span>]</span></span><br><span class="line"><span class="typedef"><span class="keyword">type</span> <span class="type">Name</span>       = <span class="type">String</span></span></span><br><span class="line"><span class="typedef"><span class="keyword">data</span> <span class="type">Address</span>    = <span class="type">None</span> | <span class="type">Addr</span> <span class="type">String</span></span></span><br><span class="line"><span class="typedef"><span class="keyword">type</span> <span class="type">Person</span>     = <span class="container">(<span class="type">Name</span>, <span class="type">Address</span>)</span></span></span><br></pre></td></tr></table></figure>
+<h1 id="Functions">Functions</h1><h2 id="List_Comprehensions_and_Arithmetic_Sequences">List Comprehensions and Arithmetic Sequences</h2><p><code>x &lt;- xs</code>, is called <code>generator</code>, meaning for every x in xs</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">quicksort</span> []    = []</span><br><span class="line"><span class="title">quicksort</span> (x: xs) = quicksort [y | y &lt;- xs, y&lt;x] ++ [x] ++ quicksort [y | y &lt;- xs, y &gt;= x]</span><br></pre></td></tr></table></figure>
+<p><code>arithmetic sequences</code><br>[1..10] =&gt; [1,2,3,4,5,6,7,8,9,10]<br>[1,3..10] =&gt; [1,3,6,9]</p>
+<p>默认Strings定义为  type String = [Char]<br>所以<br><code>:type &quot;hello&quot; =&gt; [Char]</code><br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"hello"</span> ++ <span class="string">" world"</span> =&gt; <span class="string">"hello world"</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Functions-1">Functions</h2><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">add</span> :: <span class="type">Integer</span> -&gt; <span class="type">Integer</span> -&gt; <span class="type">Integer</span></span><br><span class="line"><span class="title">add</span> x y = x + y</span><br></pre></td></tr></table></figure>
+<p><code>:type add =&gt; Integer -&gt; Integer -&gt; Integer</code><br><code>:type add 1 =&gt; Integer -&gt; Integer</code><br><code>:type add 1 2 =&gt; Integer</code><br>add is <strong>curried function</strong>.<br><code>add x y</code> equals <code>(add x) y</code><br>That means applying <code>add</code> to one argument yields a new function which is then applied to the second argument.<br><code>inc = add 1</code></p>
+<blockquote>
+<p>The name <em>curry</em> derives from the person who popularized the idea: Haskell Curry. To get the effect of an uncurried function, we could use a tuple, as in <code>add (x, y) = x + y</code>.But then we will see that this version of add is really just a functioin of <strong>one</strong> argument!</p>
+</blockquote>
+<p>pass functions as argument<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">map</span> :: (a-&gt;b) -&gt; [a] -&gt; [b]</span><br><span class="line"><span class="title">map</span> f [] = []</span><br><span class="line"><span class="title">map</span> f (x: xs) = f x : map f xs</span><br></pre></td></tr></table></figure></p>
+<p><code>map</code> receives a functioni and a list as its arguments.PS: function application has higher precedence than any infix operator.</p>
+<h2 id="Lambda_Abstractions">Lambda Abstractions</h2><p><code>add x y = x + y</code> equals <code>add = \x y -&gt; x + y</code></p>
+<h2 id="Infix_Operators_中缀操作符">Infix Operators 中缀操作符</h2><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 数组连接，当然了，这里用到了已定义的(:)操作符</span></span><br><span class="line">(++) :: [a] -&gt; [a] -&gt; [a]</span><br><span class="line">[] ++ ys = ys</span><br><span class="line">(x: xs) ++ ys = x : (xs ++ ys)</span><br></pre></td></tr></table></figure>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 复合函数</span></span><br><span class="line">(.) :: (b-&gt;c) -&gt; (a-&gt;b) -&gt; (a-&gt;c)</span><br><span class="line"><span class="title">f</span> . g = \ x -&gt; f (g x)</span><br></pre></td></tr></table></figure>
+<h2 id="Sections_切片">Sections 切片</h2><p>中缀表达式本质上只是函数，所以可以这样用<br><code>(x+)</code> equals <code>\y -&gt; x + y</code><br><code>(+y)</code> equals <code>\x -&gt; x + y</code><br>其中,<br><code>(+)</code> equals <code>\x y -&gt; x + y</code></p>
+<h2 id="Functions_are_Non-strict">Functions are Non-strict</h2><p>define <code>bot = bot</code><br><code>:type bot</code> is <code>bot:: t</code></p>
+<blockquote>
+<p>A function <strong>f</strong> is said to be <em>strict</em> if, when applied to a nonterminating expression, it also fails to terminate.<br>define <code>const1 x = 1</code><br><code>:type const1</code> is <code>const1:: Num a =&gt; t -&gt; a</code><br><code>const1 bot</code> is <code>1</code><br>but <code>inc bot</code> shows nothing<br>so <code>const1</code> is not a <strong>strict</strong> function, while <code>inc</code> is.</p>
+</blockquote>
+<p>PS: we denote the <em>value</em> of a non-terminating expression as $\perp$</p>
+<h2 id="Infinite_Data_Structures">Infinite Data Structures</h2><p><code>bot</code> is a infinite data structure.<br><code>ones = 1: ones</code> is infinite<br><code>numsFrom n = n: numsFrom (n+1)</code> is infinite<br><code>ones</code> and <code>numsFrom</code> 肯定是list，可以推断出来<br><code>squares = map (^2) (numsFrom 0)</code> is infinite</p>
+<p>可以定义一个Fibonacci数列<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">fib</span> = <span class="number">1</span>: <span class="number">1</span>: [a+b | (a,b) &lt;- zip fib (tail fib)]</span><br></pre></td></tr></table></figure></p>
+<p>我去，实在是想象不出来fib到底是怎么计算出来的</p>
+<h2 id="The_error_function">The error function</h2><p><code>error</code> is built-in function.<br><code>:type error</code> is <code>::[Char] -&gt; a</code>, 返回一个任意类型的值，据作者将这个值可以用$\perp$来表示</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Haskell/">Haskell</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Learn/">Learn</a><a href="/tags/Note/">Note</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://logistic1994.github.io/2015/09/24/Haskell-1/" data-title="Haskell 1 | Logistic1994&#39;s Blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/09/25/Haskell-2/" title="Haskell-2">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Haskell-2</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/09/22/Comprehensive-Survey-of-Clustering-Algorithms/"  title="Comprehensive Survey of Clustering Algorithms">
+ <strong>下一篇：</strong><br/> 
+ <span>Comprehensive Survey of Clustering Algorithms
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Values,_Types_and_Other_Goodies"><span class="toc-number">1.</span> <span class="toc-text">Values, Types and Other Goodies</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Polymorphic_types"><span class="toc-number">1.1.</span> <span class="toc-text">Polymorphic types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-Defined_Types"><span class="toc-number">1.2.</span> <span class="toc-text">User-Defined Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Type_Synonyms"><span class="toc-number">1.3.</span> <span class="toc-text">Type Synonyms</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Functions"><span class="toc-number">2.</span> <span class="toc-text">Functions</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#List_Comprehensions_and_Arithmetic_Sequences"><span class="toc-number">2.1.</span> <span class="toc-text">List Comprehensions and Arithmetic Sequences</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Functions-1"><span class="toc-number">2.2.</span> <span class="toc-text">Functions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda_Abstractions"><span class="toc-number">2.3.</span> <span class="toc-text">Lambda Abstractions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Infix_Operators_中缀操作符"><span class="toc-number">2.4.</span> <span class="toc-text">Infix Operators 中缀操作符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sections_切片"><span class="toc-number">2.5.</span> <span class="toc-text">Sections 切片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Functions_are_Non-strict"><span class="toc-number">2.6.</span> <span class="toc-text">Functions are Non-strict</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Infinite_Data_Structures"><span class="toc-number">2.7.</span> <span class="toc-text">Infinite Data Structures</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The_error_function"><span class="toc-number">2.8.</span> <span class="toc-text">The error function</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Haskell/" title="Haskell">Haskell<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/LeetCode/" title="LeetCode">LeetCode<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Machine-Learning/" title="Machine Learning">Machine Learning<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/papers/" title="papers">papers<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/总结/" title="总结">总结<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/我自己/" title="我自己">我自己<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/每日任务/" title="每日任务">每日任务<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/零碎知识/" title="零碎知识">零碎知识<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Learn/" title="Learn">Learn<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Note/" title="Note">Note<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/summary/" title="summary">summary<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试/" title="面试">面试<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/我自己/" title="我自己">我自己<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Summary/" title="Summary">Summary<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MinHash/" title="MinHash">MinHash<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SimHash/" title="SimHash">SimHash<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LSH/" title="LSH">LSH<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LeetCode/" title="LeetCode">LeetCode<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LR/" title="LR">LR<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/naive-bayes/" title="naive bayes">naive bayes<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/过拟合/" title="过拟合">过拟合<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cluster-analyse/" title="Cluster analyse">Cluster analyse<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Experience/" title="Experience">Experience<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/dream/" title="dream">dream<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SVM/" title="SVM">SVM<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NullPointerError/" title="NullPointerError">NullPointerError<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cluster-analyse/" title="Cluster-analyse">Cluster-analyse<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> I&#39;m ZhurongXia in Alibaba. <br/>
+			Code more.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/xiazrong" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/logistic1994" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Logistic1994">Logistic1994</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

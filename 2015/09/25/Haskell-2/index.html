@@ -1,0 +1,609 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Haskell-2 | Logistic1994&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Logistic1994">
+    
+
+    
+    <meta name="description" content="Case Expressions and Pattern MatchingAs-patterns语法糖1f s@(x:xs) = x:s -- where s means (x:xs)
+Wild-cards 通配符head (x: _) = x, actually we don’t care where  is, but in fact, we all know  must a list, for">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Haskell-2">
+<meta property="og:url" content="http://logistic1994.github.io/2015/09/25/Haskell-2/index.html">
+<meta property="og:site_name" content="Logistic1994's Blog">
+<meta property="og:description" content="Case Expressions and Pattern MatchingAs-patterns语法糖1f s@(x:xs) = x:s -- where s means (x:xs)
+Wild-cards 通配符head (x: _) = x, actually we don’t care where  is, but in fact, we all know  must a list, for">
+<meta property="og:updated_time" content="2015-10-25T07:55:16.407Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Haskell-2">
+<meta name="twitter:description" content="Case Expressions and Pattern MatchingAs-patterns语法糖1f s@(x:xs) = x:s -- where s means (x:xs)
+Wild-cards 通配符head (x: _) = x, actually we don’t care where  is, but in fact, we all know  must a list, for">
+
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Logistic1994&#39;s Blog" title="Logistic1994&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Logistic1994&#39;s Blog">Logistic1994&#39;s Blog</a></h1>
+				<h2 class="blog-motto">CS. Data Science. Deep Learning. Others.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:logistic1994.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/25/Haskell-2/" title="Haskell-2" itemprop="url">Haskell-2</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Logistic1994" target="_blank" itemprop="author">Logistic1994</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-25T11:32:14.000Z" itemprop="datePublished"> 发表于 2015-09-25</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Case_Expressions_and_Pattern_Matching"><span class="toc-number">1.</span> <span class="toc-text">Case Expressions and Pattern Matching</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pattern-Matching_Semantics"><span class="toc-number">1.1.</span> <span class="toc-text">Pattern-Matching Semantics</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case_Expressions"><span class="toc-number">1.2.</span> <span class="toc-text">Case Expressions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lazy_Patterns_看上去有点吊"><span class="toc-number">1.3.</span> <span class="toc-text">Lazy Patterns 看上去有点吊</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lexical_Scoping_and_Nested_Forms"><span class="toc-number">1.4.</span> <span class="toc-text">Lexical Scoping and Nested Forms</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有$的函数调用"><span class="toc-number">1.5.</span> <span class="toc-text">有$的函数调用</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="Case_Expressions_and_Pattern_Matching">Case Expressions and Pattern Matching</h1><p><code>As-patterns</code><br>语法糖<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">f</span> s@(x:xs) = x:s <span class="comment">-- where s means (x:xs)</span></span><br></pre></td></tr></table></figure></p>
+<p><code>Wild-cards 通配符</code><br><code>head (x: _) = x</code>, actually we don’t care where <em> is, but in fact, we all know </em> must a list, for <code>:</code> operator has list as its second argument.<br><code>tail (_: x) = x</code></p>
+<h2 id="Pattern-Matching_Semantics">Pattern-Matching Semantics</h2><p>匹配时严格按照由左到右，由上而下的顺序进行<br>匹配一般有三种结果 <em>fail, succedd, diverge</em>,比如<code>[1, 2]</code>和<code>[2, bot]</code>进行匹配，则是匹配失败，而<code>[2, 1]</code>和<code>[bot, 2]</code>进行匹配，则是diverge</p>
+<p><code>Guard</code><br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">sign</span> x | x &gt; <span class="number">0</span>   = <span class="number">1</span></span><br><span class="line">       | x == <span class="number">0</span>  = <span class="number">0</span></span><br><span class="line">       | x &lt; <span class="number">0</span>   = -<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>其中对于x的条件选择称为<code>Guard</code></p>
+<p>Guard的顺序不同可能会引起逻辑顺序不同<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">f</span> x | x &gt; <span class="number">0</span> = <span class="number">1</span></span><br><span class="line">    | x &gt; -<span class="number">1</span> = <span class="number">2</span></span><br><span class="line">    | x &lt;= -<span class="number">1</span> = <span class="number">3</span></span><br><span class="line"><span class="title">f2</span> x | x &gt; -<span class="number">1</span> = <span class="number">2</span></span><br><span class="line">     | x &gt; <span class="number">0</span> = <span class="number">1</span></span><br><span class="line">     | x &lt;= -<span class="number">1</span> = <span class="number">3</span></span><br><span class="line"><span class="comment">-- f 1 结果为 1</span></span><br><span class="line"><span class="comment">-- f2 1 结果为 2</span></span><br></pre></td></tr></table></figure></p>
+<p>困难一点的，对于$\perp$<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">bot</span> = bot</span><br><span class="line"></span><br><span class="line"><span class="title">take</span> <span class="number">0</span> _ = []</span><br><span class="line"><span class="title">take</span> _ [] = []</span><br><span class="line"><span class="title">take</span> n (x: xs) = x : take (n-<span class="number">1</span>) xs</span><br><span class="line"></span><br><span class="line"><span class="title">take2</span> _ [] = []</span><br><span class="line"><span class="title">take2</span> <span class="number">0</span> _ = []</span><br><span class="line"><span class="title">take2</span> n (x: xs) = x: take2 (n-<span class="number">1</span>) xs</span><br><span class="line"></span><br><span class="line"><span class="comment">-- take 0 bot = [], bot 匹配上 _， 不需要求值</span></span><br><span class="line"><span class="comment">-- take2 0 bot = $\prep$ 0先匹配上_， bot匹配上[]则发生diverge</span></span><br><span class="line"><span class="comment">-- take bot [] = $\prep$ bot 匹配上0， 发生diverge</span></span><br><span class="line"><span class="comment">-- take2 bot [] = [], bot匹配上_, [] 匹配上[]</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Case_Expressions">Case Expressions</h2><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">take2</span> m ys = <span class="keyword">case</span> (m, ys) <span class="keyword">of</span></span><br><span class="line">            (<span class="number">0</span>, _) -&gt; []</span><br><span class="line">            (_, []) -&gt; []</span><br><span class="line">            (n, x:xs) -&gt; x: take2 (n-<span class="number">1</span>) xs</span><br></pre></td></tr></table></figure>
+<p><code>if e1 then e2 else e3</code>也可以看做<code>case e1 of True -&gt; e2 False -&gt; e3</code></p>
+<h2 id="Lazy_Patterns_看上去有点吊">Lazy Patterns 看上去有点吊</h2><p>Lazy Patterns are <em>irrefutable</em>: matching a value <em>v</em> against <em>~pat</em> always succeeds, regardless of <em>pat</em>.简单点说就是你参数进来的时候我不看你正不正确，但是如果在等号右边被用到了，那么此时才会去进行match操作，成功或者$\perp$。<br>举个例子<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">reqs</span> = client init_client resps</span><br><span class="line"><span class="title">resps</span> = server reqs</span><br><span class="line"><span class="title">client</span> init_client (resp: resps) = init_client: client (next resp) resps</span><br><span class="line"><span class="title">server</span> (req: reqs) = process req: server reqs</span><br><span class="line"><span class="title">init_client</span> = <span class="number">1</span></span><br><span class="line"><span class="title">next</span> resp = resp * <span class="number">2</span></span><br><span class="line"><span class="title">process</span> req = req + <span class="number">10</span></span><br></pre></td></tr></table></figure></p>
+<p>这个程序的意思是，client先发出初始request, <code>init_client</code>，然后server接受request, process它返回response, 接着client使用next对resp进行处理，并发出下一条request，如此循环<br>从逻辑上看，对于<code>resps</code>，在<code>client init_client (resp: resps)</code>的时候，<code>server (req: reqs)</code>并没有知晓，所以<code>resp:resps</code>究竟能否不为空也并不知晓，因此这样的程序存在过早匹配，就是说我们可以将<code>resp:resps</code>先缓一缓在进行匹配</p>
+<p>当然传统的改进是这样<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">reqs</span> = client init_client resps</span><br><span class="line"><span class="title">resps</span> = server reqs</span><br><span class="line"><span class="title">client</span> init_client resps = init_client: client (next (head resps)) (tail resps)</span><br><span class="line"><span class="title">server</span> (req: reqs) = process req: server reqs</span><br><span class="line"><span class="title">init_client</span> = <span class="number">1</span></span><br><span class="line"><span class="title">next</span> resp = resp * <span class="number">2</span></span><br><span class="line"><span class="title">process</span> req = req + <span class="number">10</span></span><br></pre></td></tr></table></figure></p>
+<p>这样改进，程序肯定能够运行，并且语意上也能懂，就是讲resps只要是个list就肯定能匹配上，至于运行会不会出错，那不关我的事了</p>
+<p>lazy pattern的改进是这样的<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">reqs</span> = client init_client resps</span><br><span class="line"><span class="title">resps</span> = server reqs</span><br><span class="line"><span class="title">client</span> init_client ~(resp: resps) = init_client: client (next resp) resps</span><br><span class="line"><span class="title">server</span> (req: reqs) = process req: server reqs</span><br><span class="line"><span class="title">init_client</span> = <span class="number">1</span></span><br><span class="line"><span class="title">next</span> resp = resp * <span class="number">2</span></span><br><span class="line"><span class="title">process</span> req = req + <span class="number">10</span></span><br></pre></td></tr></table></figure></p>
+<p>先对<code>resp: resps</code>的非空list的匹配先缓一缓，日后如果匹配上就好，匹配不上就直接为$\perp$值</p>
+<p>这个有点绕，需要好好理解一下。</p>
+<p>另一个例子是Fibonacci数列。<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">fib</span>@(<span class="number">1</span>: tfib) = <span class="number">1</span>: <span class="number">1</span>: [a+b | (a, b) &lt;- zip fib tfib]</span><br></pre></td></tr></table></figure></p>
+<p>$fib$ is $[1, 1, 2, 3, 5, 8, 13, \ldots]$<br>$tfib$ is $[1, 2, 3, 5, 8, 13, \ldots]$<br>$[a+b | (a, b) &lt;- zip fib tfib]$ is $[2, 3, 5, 8, 13, \ldots]$<br>$1: 1: [a+b|(a, b) &lt;- zip fib tfib]$ is $[1, 1, 2, 3, 5, 8, 13, \ldots]$ 正好就是$fib$<br>正确性可以得到验证，但是至于它是怎么计算出来的，转换成什么样的汇编就不清楚了<br>从另一个角度来看，这种写法的好处是结尾少一个tail函数。这样的写法叫做<strong>pattern binding</strong>.另外，按照原先的看法是在fib还不知道是什么样子的情况下，莫名地匹配上$1: tfib$的格式，理论上是不会有输出的，但事实上<strong>pattern binding</strong>会自动在fib前面加上<code>~</code>。</p>
+<h2 id="Lexical_Scoping_and_Nested_Forms">Lexical Scoping and Nested Forms</h2><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- let 用法</span></span><br><span class="line"><span class="title">f</span> x = <span class="keyword">let</span> y = x * x</span><br><span class="line">    <span class="keyword">in</span> y</span><br></pre></td></tr></table></figure>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- where 用法</span></span><br><span class="line"><span class="title">f</span> x y | y &gt; z = <span class="number">1</span></span><br><span class="line">      | y == z = <span class="number">2</span></span><br><span class="line">      | y &lt; z = <span class="number">3</span></span><br><span class="line">      <span class="keyword">where</span> z = x * x</span><br></pre></td></tr></table></figure>
+<p>函数在<code>where</code>绑定中定义的名字只对本函数可见。<code>where</code>绑定不会在多个模式中共享。<code>where</code>绑定可以使用模式匹配。<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">initials</span> :: <span class="type">String</span> -&gt; <span class="type">String</span> -&gt; <span class="type">String</span></span><br><span class="line"><span class="title">initials</span> firstname lastname = [f] ++ <span class="string">"."</span> ++ [l] ++ <span class="string">"."</span></span><br><span class="line">  <span class="keyword">where</span> (f:_) = firstname</span><br><span class="line">        (l:_) = lastname</span><br></pre></td></tr></table></figure></p>
+<h2 id="有$的函数调用">有$的函数调用</h2><p>$的优先级最低并且是右结合的，所以可以减少括号的写作<br><code>sum (map sqrt[1..130])</code> =&gt; <code>sum $ map sqrt [1..130]</code></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Haskell/">Haskell</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Learn/">Learn</a><a href="/tags/Note/">Note</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://logistic1994.github.io/2015/09/25/Haskell-2/" data-title="Haskell-2 | Logistic1994&#39;s Blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/09/26/Haskell-3/" title="Haskell-3">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Haskell-3</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/09/24/Haskell-1/"  title="Haskell 1">
+ <strong>下一篇：</strong><br/> 
+ <span>Haskell 1
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Case_Expressions_and_Pattern_Matching"><span class="toc-number">1.</span> <span class="toc-text">Case Expressions and Pattern Matching</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pattern-Matching_Semantics"><span class="toc-number">1.1.</span> <span class="toc-text">Pattern-Matching Semantics</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case_Expressions"><span class="toc-number">1.2.</span> <span class="toc-text">Case Expressions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lazy_Patterns_看上去有点吊"><span class="toc-number">1.3.</span> <span class="toc-text">Lazy Patterns 看上去有点吊</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lexical_Scoping_and_Nested_Forms"><span class="toc-number">1.4.</span> <span class="toc-text">Lexical Scoping and Nested Forms</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有$的函数调用"><span class="toc-number">1.5.</span> <span class="toc-text">有$的函数调用</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Haskell/" title="Haskell">Haskell<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/LeetCode/" title="LeetCode">LeetCode<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Machine-Learning/" title="Machine Learning">Machine Learning<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/papers/" title="papers">papers<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/总结/" title="总结">总结<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/我自己/" title="我自己">我自己<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/每日任务/" title="每日任务">每日任务<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/零碎知识/" title="零碎知识">零碎知识<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Learn/" title="Learn">Learn<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Note/" title="Note">Note<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/summary/" title="summary">summary<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试/" title="面试">面试<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/我自己/" title="我自己">我自己<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Summary/" title="Summary">Summary<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MinHash/" title="MinHash">MinHash<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SimHash/" title="SimHash">SimHash<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LSH/" title="LSH">LSH<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LeetCode/" title="LeetCode">LeetCode<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LR/" title="LR">LR<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/naive-bayes/" title="naive bayes">naive bayes<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/过拟合/" title="过拟合">过拟合<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cluster-analyse/" title="Cluster analyse">Cluster analyse<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Experience/" title="Experience">Experience<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/dream/" title="dream">dream<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SVM/" title="SVM">SVM<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NullPointerError/" title="NullPointerError">NullPointerError<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cluster-analyse/" title="Cluster-analyse">Cluster-analyse<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> I&#39;m ZhurongXia in Alibaba. <br/>
+			Code more.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/xiazrong" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/logistic1994" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Logistic1994">Logistic1994</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
