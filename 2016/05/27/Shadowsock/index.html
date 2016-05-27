@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Shadowsock-Android修改 | Logistic1994&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="主要想法网络上有不少免费的SS账号，但大多数都是每隔几个小时就变一次密码的。所以期望在SS-android版中增加一个小功能：点击一个按钮，便自动获取网络上某个免费账号。
+SS-Android分析java部分是java和scala混合编程的，其中java用于特定的安卓部分用scala无法实现的。网络传输编码解码部分是c或者c++的。我们这边主要修改的是主界面部分。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shadowsock-Android修改">
+<meta property="og:url" content="http://logistic1994.github.io/2016/05/27/Shadowsock/index.html">
+<meta property="og:site_name" content="Logistic1994's Blog">
+<meta property="og:description" content="主要想法网络上有不少免费的SS账号，但大多数都是每隔几个小时就变一次密码的。所以期望在SS-android版中增加一个小功能：点击一个按钮，便自动获取网络上某个免费账号。
+SS-Android分析java部分是java和scala混合编程的，其中java用于特定的安卓部分用scala无法实现的。网络传输编码解码部分是c或者c++的。我们这边主要修改的是主界面部分。">
+<meta property="og:updated_time" content="2016-05-27T08:46:21.477Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shadowsock-Android修改">
+<meta name="twitter:description" content="主要想法网络上有不少免费的SS账号，但大多数都是每隔几个小时就变一次密码的。所以期望在SS-android版中增加一个小功能：点击一个按钮，便自动获取网络上某个免费账号。
+SS-Android分析java部分是java和scala混合编程的，其中java用于特定的安卓部分用scala无法实现的。网络传输编码解码部分是c或者c++的。我们这边主要修改的是主界面部分。">
+  
+    <link rel="alternative" href="/atom.xml" title="Logistic1994&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/author.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Logistic1994</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">CS. Data Science. Deep Learning. CV.</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>標籤</li>
+						
+						
+						<li>關於</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Logistic1994" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/xiazrong" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/SoSaYifei" title="zhihu">zhihu</a>
+					        
+								<a class="facebook" target="_blank" href="https://www.facebook.com/logistic.simon" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 17.5px;">Android</a> <a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Haskell/" style="font-size: 15px;">Haskell</a> <a href="/tags/LR/" style="font-size: 10px;">LR</a> <a href="/tags/LSH/" style="font-size: 10px;">LSH</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/MinHash/" style="font-size: 10px;">MinHash</a> <a href="/tags/NullPointerError/" style="font-size: 10px;">NullPointerError</a> <a href="/tags/OJ/" style="font-size: 10px;">OJ</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scala/" style="font-size: 10px;">Scala</a> <a href="/tags/SimHash/" style="font-size: 10px;">SimHash</a> <a href="/tags/cluster/" style="font-size: 10px;">cluster</a> <a href="/tags/http包/" style="font-size: 10px;">http包</a> <a href="/tags/paper/" style="font-size: 10px;">paper</a> <a href="/tags/scala/" style="font-size: 17.5px;">scala</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a> <a href="/tags/健身/" style="font-size: 10px;">健身</a> <a href="/tags/大神/" style="font-size: 12.5px;">大神</a> <a href="/tags/好歌推荐/" style="font-size: 10px;">好歌推荐</a> <a href="/tags/工作计划/" style="font-size: 10px;">工作计划</a> <a href="/tags/总结/" style="font-size: 12.5px;">总结</a> <a href="/tags/数据挖掘/" style="font-size: 12.5px;">数据挖掘</a> <a href="/tags/新年展望/" style="font-size: 10px;">新年展望</a> <a href="/tags/梯度下降/" style="font-size: 10px;">梯度下降</a> <a href="/tags/肩部健身/" style="font-size: 10px;">肩部健身</a> <a href="/tags/过拟合/" style="font-size: 10px;">过拟合</a> <a href="/tags/阿里巴巴/" style="font-size: 12.5px;">阿里巴巴</a> <a href="/tags/面试总结/" style="font-size: 15px;">面试总结</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">火神请不要随便碰。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Logistic1994</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/author.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Logistic1994</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">CS. Data Science. Deep Learning. CV.</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Logistic1994" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/xiazrong" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/SoSaYifei" title="zhihu">zhihu</a>
+			        
+						<a class="facebook" target="_blank" href="https://www.facebook.com/logistic.simon" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Shadowsock" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/27/Shadowsock/" class="article-date">
+  	<time datetime="2016-05-27T08:41:03.000Z" itemprop="datePublished">2016-05-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Shadowsock-Android修改
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scala/">scala</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/scala/">scala</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="主要想法">主要想法</h2><p>网络上有不少免费的SS账号，但大多数都是每隔几个小时就变一次密码的。所以期望在SS-android版中增加一个小功能：点击一个按钮，便自动获取网络上某个免费账号。</p>
+<h4 id="SS-Android分析">SS-Android分析</h4><p>java部分是java和scala混合编程的，其中java用于特定的安卓部分用scala无法实现的。<br>网络传输编码解码部分是c或者c++的。<br>我们这边主要修改的是主界面部分。</p>
+<a id="more"></a>
+<h4 id="界面修改">界面修改</h4><p>在<code>com.github.jorgecastilloprz.FABProgressCircle</code>末尾加上<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">Button</span></span><br><span class="line">    <span class="attribute">android:id</span>=<span class="value">"@+id/autoFecthButton"</span></span><br><span class="line">    <span class="attribute">android:text</span>=<span class="value">"AUTO"</span></span><br><span class="line">    <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span></span><br><span class="line">    <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span></span><br><span class="line">    <span class="attribute">android:layout_alignBottom</span>=<span class="value">"@id/fabProgressCircle"</span></span><br><span class="line">    <span class="attribute">android:layout_alignParentRight</span>=<span class="value">"true"</span></span><br><span class="line">    <span class="attribute">android:layout_alignParentEnd</span>=<span class="value">"true"</span></span><br><span class="line">    <span class="attribute">android:layout_marginRight</span>=<span class="value">"16dp"</span></span><br><span class="line">    <span class="attribute">android:layout_marginEnd</span>=<span class="value">"16dp"</span></span><br><span class="line">    <span class="attribute">android:layout_marginBottom</span>=<span class="value">"@dimen/fab_margin_bottom"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="逻辑修改">逻辑修改</h4><p>在<code>Shadowsocks.scala</code>第348行之后加上：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> autoFetchButton = findViewById(<span class="type">R</span>.id.autoFecthButton).asInstanceOf[<span class="type">Button</span>]</span><br><span class="line">autoFetchButton.setOnClickListener((v: <span class="type">View</span>) =&gt; &#123;</span><br><span class="line">  <span class="type">ThrowableFuture</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">val</span> connection = <span class="keyword">new</span> <span class="type">URL</span>(<span class="string">"http://www.ishadowsocks.com"</span>).openConnection().asInstanceOf[<span class="type">HttpURLConnection</span>]</span><br><span class="line">      connection.setConnectTimeout(<span class="number">1000</span>*<span class="number">10</span>)</span><br><span class="line">      connection.setReadTimeout(<span class="number">1000</span>*<span class="number">10</span>)</span><br><span class="line">      connection.setRequestMethod(<span class="string">"GET"</span>)</span><br><span class="line">      connection.connect()</span><br><span class="line">      <span class="keyword">val</span> is = connection.getInputStream</span><br><span class="line">      <span class="keyword">val</span> bufferedReader = <span class="keyword">new</span> <span class="type">BufferedReader</span>(<span class="keyword">new</span> <span class="type">InputStreamReader</span>(is))</span><br><span class="line">      <span class="keyword">val</span> str2 = <span class="type">Stream</span>.continually(bufferedReader.readLine()).takeWhile(_ != <span class="literal">null</span>)</span><br><span class="line">      <span class="keyword">val</span> str = str2.mkString</span><br><span class="line">      <span class="keyword">val</span> regexServer = <span class="string">"""服务器地址:([\w.]*)&lt;"""</span>.r</span><br><span class="line">      <span class="keyword">val</span> regexPassword = <span class="string">"""密码:(\d*)&lt;"""</span>.r</span><br><span class="line">      <span class="keyword">val</span> resServers = regexServer.findAllIn(str)</span><br><span class="line">      <span class="keyword">val</span> resPasswords = regexPassword.findAllIn(str)</span><br><span class="line">      <span class="keyword">if</span> (resServers.nonEmpty &amp;&amp; resPasswords.nonEmpty) &#123;</span><br><span class="line">        <span class="keyword">val</span> server = resServers.group(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">val</span> pass = resPasswords.group(<span class="number">1</span>)</span><br><span class="line">        handler.post(() =&gt; &#123;</span><br><span class="line">          preferences.setPref(server, pass)</span><br><span class="line">          <span class="type">Toast</span>.makeText(<span class="keyword">this</span>, server + <span class="string">":"</span> + pass, <span class="type">Toast</span>.<span class="type">LENGTH_SHORT</span>).show()</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        handler.post(() =&gt; &#123;</span><br><span class="line">          <span class="type">Toast</span>.makeText(<span class="keyword">this</span>, <span class="string">"无法获取服务器和密码"</span>, <span class="type">Toast</span>.<span class="type">LENGTH_SHORT</span>).show()</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">      <span class="keyword">case</span> _: <span class="type">Throwable</span> =&gt; handler.post(() =&gt; &#123;</span><br><span class="line">          <span class="type">Toast</span>.makeText(<span class="keyword">this</span>, <span class="string">"网络连接中出现错误"</span>, <span class="type">Toast</span>.<span class="type">LENGTH_SHORT</span>).show()</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>同时顺便注释了第457行到461行的广告代码。</p>
+<p>在<code>ShadowsocksSettings.scala</code>第192行之后加上监听preference数据源变化之后的显示代码<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="type">Key</span>.proxy =&gt; </span><br><span class="line">  <span class="keyword">val</span> proxyStr = sharedPreferences.getString(<span class="type">Key</span>.proxy, <span class="string">""</span>)</span><br><span class="line">  findPreference(<span class="type">Key</span>.proxy).asInstanceOf[<span class="type">SummaryEditTextPreference</span>].setText(proxyStr)</span><br><span class="line"><span class="keyword">case</span> <span class="type">Key</span>.sitekey =&gt;</span><br><span class="line">  <span class="keyword">val</span> sitekeyStr = sharedPreferences.getString(<span class="type">Key</span>.sitekey, <span class="string">""</span>)</span><br><span class="line">  findPreference(<span class="type">Key</span>.sitekey).asInstanceOf[<span class="type">PasswordEditTextPreference</span>].setText(sitekeyStr)</span><br><span class="line"><span class="keyword">case</span> _ =&gt;</span><br></pre></td></tr></table></figure></p>
+<p>第220行之后加上插入新数据的代码<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">setPref</span>(</span>server: <span class="type">String</span>, pass: <span class="type">String</span>) &#123;</span><br><span class="line">  <span class="type">Log</span>.e(<span class="string">"sos"</span>, <span class="string">"in setPref function"</span>)</span><br><span class="line">  findPreference(<span class="type">Key</span>.proxy).getEditor().putString(<span class="type">Key</span>.proxy, server).apply();</span><br><span class="line">  findPreference(<span class="type">Key</span>.sitekey).getEditor().putString(<span class="type">Key</span>.sitekey, pass).apply();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="代码">代码</h2><p><a href="https://github.com/Logistic1994/shadowsocks-android" title="shadowsocks-android" target="_blank" rel="external">SS-android修改</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/05/27/Scala-Week4/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Scala-Week4</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Shadowsock" data-title="Shadowsock-Android修改" data-url="http://logistic1994.github.io/2016/05/27/Shadowsock/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"logistic1994"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Logistic1994
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

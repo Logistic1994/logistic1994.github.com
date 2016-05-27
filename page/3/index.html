@@ -109,7 +109,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Android/" style="font-size: 17.5px;">Android</a> <a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Haskell/" style="font-size: 15px;">Haskell</a> <a href="/tags/LR/" style="font-size: 10px;">LR</a> <a href="/tags/LSH/" style="font-size: 10px;">LSH</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/MinHash/" style="font-size: 10px;">MinHash</a> <a href="/tags/NullPointerError/" style="font-size: 10px;">NullPointerError</a> <a href="/tags/OJ/" style="font-size: 10px;">OJ</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/SimHash/" style="font-size: 10px;">SimHash</a> <a href="/tags/cluster/" style="font-size: 10px;">cluster</a> <a href="/tags/http包/" style="font-size: 10px;">http包</a> <a href="/tags/paper/" style="font-size: 10px;">paper</a> <a href="/tags/scala/" style="font-size: 12.5px;">scala</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a> <a href="/tags/大神/" style="font-size: 12.5px;">大神</a> <a href="/tags/工作计划/" style="font-size: 10px;">工作计划</a> <a href="/tags/总结/" style="font-size: 12.5px;">总结</a> <a href="/tags/数据挖掘/" style="font-size: 12.5px;">数据挖掘</a> <a href="/tags/新年展望/" style="font-size: 10px;">新年展望</a> <a href="/tags/梯度下降/" style="font-size: 10px;">梯度下降</a> <a href="/tags/过拟合/" style="font-size: 10px;">过拟合</a> <a href="/tags/阿里巴巴/" style="font-size: 12.5px;">阿里巴巴</a> <a href="/tags/面试总结/" style="font-size: 15px;">面试总结</a>
+						<a href="/tags/Android/" style="font-size: 17.5px;">Android</a> <a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Haskell/" style="font-size: 15px;">Haskell</a> <a href="/tags/LR/" style="font-size: 10px;">LR</a> <a href="/tags/LSH/" style="font-size: 10px;">LSH</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/MinHash/" style="font-size: 10px;">MinHash</a> <a href="/tags/NullPointerError/" style="font-size: 10px;">NullPointerError</a> <a href="/tags/OJ/" style="font-size: 10px;">OJ</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scala/" style="font-size: 10px;">Scala</a> <a href="/tags/SimHash/" style="font-size: 10px;">SimHash</a> <a href="/tags/cluster/" style="font-size: 10px;">cluster</a> <a href="/tags/http包/" style="font-size: 10px;">http包</a> <a href="/tags/paper/" style="font-size: 10px;">paper</a> <a href="/tags/scala/" style="font-size: 17.5px;">scala</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a> <a href="/tags/健身/" style="font-size: 10px;">健身</a> <a href="/tags/大神/" style="font-size: 12.5px;">大神</a> <a href="/tags/好歌推荐/" style="font-size: 10px;">好歌推荐</a> <a href="/tags/工作计划/" style="font-size: 10px;">工作计划</a> <a href="/tags/总结/" style="font-size: 12.5px;">总结</a> <a href="/tags/数据挖掘/" style="font-size: 12.5px;">数据挖掘</a> <a href="/tags/新年展望/" style="font-size: 10px;">新年展望</a> <a href="/tags/梯度下降/" style="font-size: 10px;">梯度下降</a> <a href="/tags/肩部健身/" style="font-size: 10px;">肩部健身</a> <a href="/tags/过拟合/" style="font-size: 10px;">过拟合</a> <a href="/tags/阿里巴巴/" style="font-size: 12.5px;">阿里巴巴</a> <a href="/tags/面试总结/" style="font-size: 15px;">面试总结</a>
 					</div>
 				</section>
 				
@@ -176,6 +176,382 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-Android编程的好习惯" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/12/Android编程的好习惯/" class="article-date">
+  	<time datetime="2015-07-12T02:55:05.000Z" itemprop="datePublished">2015-07-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/12/Android编程的好习惯/">Android编程的好习惯</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>引用自知乎:<a href="http://www.zhihu.com/question/27227425" target="_blank" rel="external">大家有哪些好的Android习惯</a></p>
+</blockquote>
+<ol>
+<li><p>写一个抽象的BaseActivity.java，将初始化抽象为setContentView()、findViews()、getData()、showContent()这四个方法，所有的Activity都继承它：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span></span>&#123;</span><br><span class="line">    <span class="annotation">@Override</span> </span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123; </span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState); </span><br><span class="line">        init();</span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">        setContentView();</span><br><span class="line">        findViews();</span><br><span class="line">        getData();</span><br><span class="line">        showContent();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">setContentView</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">findViews</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">getData</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">showContent</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法返回值不返回null，返回空值，比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;String&gt; <span class="title">getFolderFiles</span><span class="params">( String folderPath )</span></span>&#123;</span><br><span class="line">    List&lt;String&gt; fileList = <span class="keyword">new</span> ArrayList&lt;String&gt;( );</span><br><span class="line">    <span class="keyword">if</span>( TextUtils.isEmpty( folderPath ) )&#123;</span><br><span class="line">        <span class="keyword">return</span> fileList;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    File file = <span class="keyword">new</span> File( folderPath );</span><br><span class="line">    <span class="keyword">if</span>( file.isDirectory( ) )&#123;</span><br><span class="line">        File[] files = file.listFiles( );</span><br><span class="line">        <span class="keyword">if</span>( <span class="keyword">null</span> != files )&#123;</span><br><span class="line">            fileList = <span class="keyword">new</span> ArrayList&lt;String&gt;( );</span><br><span class="line">            <span class="keyword">for</span>( File subFile : files )&#123;</span><br><span class="line">                fileList.add( subFile.getPath( ) );</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> fileList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在方法顶部做入参判断，入参异常直接返回，比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;String&gt; <span class="title">getAssertsFiles</span><span class="params">( Context context )</span></span>&#123;</span><br><span class="line">    List&lt;String&gt; assertsFileList = <span class="keyword">new</span> ArrayList&lt;String&gt;( );</span><br><span class="line">    <span class="keyword">if</span>( <span class="keyword">null</span> == context )&#123;</span><br><span class="line">        <span class="keyword">return</span> assertsFileList;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    AssetManager assetManager = context.getAssets();</span><br><span class="line">    String[] files = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        files = assetManager.list(<span class="string">""</span>);</span><br><span class="line">        assertsFileList = Arrays.asList( files );</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace( );</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> assertsFileList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用List、Map而不是ArrayList、HashMap声明成员变量、作为返回值、作为入参等等，尽量用抽象而不是具体实现。</p>
+</li>
+<li><p>在任何时候不使用类的finalize方法释放资源；</p>
+</li>
+<li><p>在finally中关闭文件流、cursor等等；</p>
+</li>
+<li><p>封装一个DebugUtils类来管理程序中所有的打印：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DebugUtils</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"Debug"</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">DebugUtils</span><span class="params">( )</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">println</span><span class="params">( String printInfo )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE &amp;&amp; <span class="keyword">null</span> != printInfo )&#123;</span><br><span class="line">            System.out.println( printInfo );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">( String printInfo )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE &amp;&amp; <span class="keyword">null</span> != printInfo )&#123;</span><br><span class="line">            System.out.print( printInfo );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogI</span><span class="params">( String logInfo )</span></span>&#123;</span><br><span class="line">        printLogI( TAG, logInfo );</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogI</span><span class="params">( String tag, String logInfo )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE &amp;&amp; <span class="keyword">null</span> != tag &amp;&amp; <span class="keyword">null</span> != logInfo )&#123;</span><br><span class="line">            Log.i( tag, logInfo );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogE</span><span class="params">( String logInfo )</span></span>&#123;</span><br><span class="line">        printLogE( TAG, logInfo );</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogE</span><span class="params">( String tag, String logInfo )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE &amp;&amp; <span class="keyword">null</span> != tag &amp;&amp; <span class="keyword">null</span> != logInfo )&#123;</span><br><span class="line">            Log.e( tag, logInfo );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogW</span><span class="params">( String logInfo )</span></span>&#123;</span><br><span class="line">        printLogW( TAG, logInfo );</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogW</span><span class="params">( String tag, String logInfo )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE &amp;&amp; <span class="keyword">null</span> != tag &amp;&amp; <span class="keyword">null</span> != logInfo )&#123;</span><br><span class="line">            Log.w( tag, logInfo );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogD</span><span class="params">( String logInfo )</span></span>&#123;</span><br><span class="line">        printLogD( TAG, logInfo );</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogD</span><span class="params">( String tag, String logInfo )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE &amp;&amp; <span class="keyword">null</span> != tag &amp;&amp; <span class="keyword">null</span> != logInfo )&#123;</span><br><span class="line">            Log.d( tag, logInfo );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogV</span><span class="params">( String logInfo )</span></span>&#123;</span><br><span class="line">        printLogV( TAG, logInfo );</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogV</span><span class="params">( String tag, String logInfo )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE &amp;&amp; <span class="keyword">null</span> != tag || <span class="keyword">null</span> != logInfo )&#123;</span><br><span class="line">            Log.v( tag, logInfo );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogWtf</span><span class="params">( String logInfo )</span></span>&#123;</span><br><span class="line">        printLogWtf( TAG, logInfo );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLogWtf</span><span class="params">( String tag, String logInfo )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE &amp;&amp; <span class="keyword">null</span> != tag &amp;&amp; <span class="keyword">null</span> != logInfo )&#123;</span><br><span class="line">            Log.wtf( tag, logInfo );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showToast</span><span class="params">( Context context, String toastInfo )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( <span class="keyword">null</span> != context &amp;&amp; <span class="keyword">null</span> != toastInfo )&#123;</span><br><span class="line">            Toast.makeText( context, toastInfo, Toast.LENGTH_LONG ).show( );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showToast</span><span class="params">( Context context, String toastInfo, <span class="keyword">int</span> timeLen )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( <span class="keyword">null</span> != context &amp;&amp; <span class="keyword">null</span> != toastInfo &amp;&amp; ( timeLen &gt; <span class="number">0</span> ) )&#123;</span><br><span class="line">            Toast.makeText( context, toastInfo, timeLen ).show( );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printBaseInfo</span><span class="params">( )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE )&#123;</span><br><span class="line">            StringBuffer strBuffer = <span class="keyword">new</span> StringBuffer( );</span><br><span class="line">            StackTraceElement[ ] stackTrace = <span class="keyword">new</span> Throwable( ).getStackTrace( );</span><br><span class="line"></span><br><span class="line">            strBuffer.append( <span class="string">"; class:"</span> ).append( stackTrace[ <span class="number">1</span> ].getClassName( ) )</span><br><span class="line">                    .append( <span class="string">"; method:"</span> ).append( stackTrace[ <span class="number">1</span> ].getMethodName( ) )</span><br><span class="line">                    .append( <span class="string">"; number:"</span> ).append( stackTrace[ <span class="number">1</span> ].getLineNumber( ) )</span><br><span class="line">                    .append( <span class="string">"; fileName:"</span> ).append( stackTrace[ <span class="number">1</span> ].getFileName( ) );</span><br><span class="line"></span><br><span class="line">            println( strBuffer.toString( ) );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printFileNameAndLinerNumber</span><span class="params">( )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE )&#123;</span><br><span class="line">            StringBuffer strBuffer = <span class="keyword">new</span> StringBuffer( );</span><br><span class="line">            StackTraceElement[ ] stackTrace = <span class="keyword">new</span> Throwable( ).getStackTrace( );</span><br><span class="line"></span><br><span class="line">            strBuffer.append( <span class="string">"; fileName:"</span> ).append( stackTrace[ <span class="number">1</span> ].getFileName( ) )</span><br><span class="line">                    .append( <span class="string">"; number:"</span> ).append( stackTrace[ <span class="number">1</span> ].getLineNumber( ) );</span><br><span class="line"></span><br><span class="line">            println( strBuffer.toString( ) );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">printLineNumber</span><span class="params">( )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE )&#123;</span><br><span class="line">            StringBuffer strBuffer = <span class="keyword">new</span> StringBuffer( );</span><br><span class="line">            StackTraceElement[ ] stackTrace = <span class="keyword">new</span> Throwable( ).getStackTrace( );</span><br><span class="line"></span><br><span class="line">            strBuffer.append( <span class="string">"; number:"</span> ).append( stackTrace[ <span class="number">1</span> ].getLineNumber( ) );</span><br><span class="line"></span><br><span class="line">            println( strBuffer.toString( ) );</span><br><span class="line">            <span class="keyword">return</span> stackTrace[ <span class="number">1</span> ].getLineNumber( );</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printMethod</span><span class="params">( )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( Debug.DEBUG_MODE )&#123;</span><br><span class="line">            StringBuffer strBuffer = <span class="keyword">new</span> StringBuffer( );</span><br><span class="line">            StackTraceElement[ ] stackTrace = <span class="keyword">new</span> Throwable( ).getStackTrace( );</span><br><span class="line"></span><br><span class="line">            strBuffer.append( <span class="string">"; number:"</span> ).append( stackTrace[ <span class="number">1</span> ].getMethodName( ) );</span><br><span class="line"></span><br><span class="line">            println( strBuffer.toString( ) );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printFileNameAndLinerNumber</span><span class="params">( String printInfo )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( <span class="keyword">null</span> == printInfo || !Debug.DEBUG_MODE )&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuffer strBuffer = <span class="keyword">new</span> StringBuffer( );</span><br><span class="line">        StackTraceElement[ ] stackTrace = <span class="keyword">new</span> Throwable( ).getStackTrace( );</span><br><span class="line"></span><br><span class="line">        strBuffer.append( <span class="string">"; fileName:"</span> ).append( stackTrace[ <span class="number">1</span> ].getFileName( ) )</span><br><span class="line">                .append( <span class="string">"; number:"</span> ).append( stackTrace[ <span class="number">1</span> ].getLineNumber( ) ).append( <span class="string">"\n"</span> )</span><br><span class="line">                .append( ( <span class="keyword">null</span> != printInfo ) ? printInfo : <span class="string">""</span> );</span><br><span class="line"></span><br><span class="line">        println( strBuffer.toString( ) );</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showStrictMode</span><span class="params">( )</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (DebugUtils.Debug.DEBUG_MODE) &#123;</span><br><span class="line">            StrictMode.setThreadPolicy(<span class="keyword">new</span> StrictMode.ThreadPolicy.Builder()</span><br><span class="line">                    .detectDiskReads().detectDiskWrites().detectNetwork().penaltyLog().build());</span><br><span class="line">            StrictMode.setVmPolicy(<span class="keyword">new</span> StrictMode.VmPolicy.Builder()</span><br><span class="line">                    .detectLeakedSqlLiteObjects().detectLeakedClosableObjects().penaltyLog().penaltyDeath().build());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">d</span><span class="params">(String tag, String msg)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(DebugUtils.Debug.DEBUG_MODE)&#123;</span><br><span class="line">            Log.d(tag, msg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Debug</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">boolean</span> DEBUG_MODE = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>静态类的构造方法私有化，具体实例参见7；</p>
+</li>
+<li><p>没有必要用硬件加速的页面在AndroidMainfest.xml中将其关掉</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;10. &#22312;&#27809;&#26377;&#20351;&#29992;&#21040;&#22810;&#28857;&#35302;&#25511;&#30340;&#39029;&#38754;&#65292;&#36890;&#36807;&#22312;&#20027;&#39064;&#20013;&#35774;&#32622;&#19979;&#21015;&#20004;&#20010;&#23646;&#24615;&#23558;&#22810;&#28857;&#35302;&#25511;&#20851;&#25481;&#65306;&#10;``` xml&#10;&#60;item name=&#34;android:windowEnableSplitTouch&#34;&#62;false&#60;/item&#62;&#10;&#60;item name=&#34;android:splitMotionEvents&#34;&#62;false&#60;/item&#62;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定义一个防止视图重复点击的静态类，在需要做防止重复点击的地方加上该判断：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BtnClickUtils</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> mLastClickTime = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">BtnClickUtils</span><span class="params">( )</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isFastDoubleClick</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> time = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">long</span> timeD = time - mLastClickTime;</span><br><span class="line">        <span class="keyword">if</span> ( <span class="number">0</span> &lt; timeD &amp;&amp; timeD &lt; <span class="number">500</span>) &#123;   </span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;   </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        mLastClickTime = time;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在布局中使用LinearLayout的android:weight属性时，将view的android:layout_width属性设置为0dp；</p>
+</li>
+<li><p>涉及到APP的核心数据全部加密处理，在使用的时候解密；</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-2015年3月13日阿里数据挖掘工程师电话面试总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/03/13/2015年3月13日阿里数据挖掘工程师电话面试总结/" class="article-date">
+  	<time datetime="2015-03-13T15:18:09.000Z" itemprop="datePublished">2015-03-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/13/2015年3月13日阿里数据挖掘工程师电话面试总结/">2015年3月13日阿里电话面试总结</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="kmeans算法中的k如何确定？">kmeans算法中的k如何确定？</h1><ol>
+<li>Rule of thumb: $k\sqrt{\frac{n}{2}}$</li>
+<li>BIC指标: $BIC(C|X) = L(X|C) - \frac{p}{2}log(n)$</li>
+<li>The Elbow Method: Parent of variance explained against the Number of clusters.这个方法论文没有看懂到底是什么意思。</li>
+<li>对每个类进行假设检验是否为正态分布，事实上与方法2有共通之处。</li>
+</ol>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据挖掘/">数据挖掘</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/阿里巴巴/">阿里巴巴</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试总结/">面试总结</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/面试/">面试</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/03/13/2015年3月13日阿里数据挖掘工程师电话面试总结/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-2015年3月4日阿里数据挖掘工程师电话面试总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/03/09/2015年3月4日阿里数据挖掘工程师电话面试总结/" class="article-date">
+  	<time datetime="2015-03-09T14:38:20.000Z" itemprop="datePublished">2015-03-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/09/2015年3月4日阿里数据挖掘工程师电话面试总结/">2015年3月4日阿里数据挖掘工程师电话面试总结</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>下面对面试官所问的一些问题做汇总：</p>
+<h3 id="1-Feature，即特征是什么？">1.Feature，即特征是什么？</h3><p>他原本问我的是我做的数字识别里面的特征是什么，以我之前对特征的理解，比如神经网络，我认为是参数层所表达的便是特征。因此，我才不能明白他所说的特征到底是什么含义。<br>现在我知道了，特征便是输入数据。描述一个苹果的特征包括苹果的大小、味道、颜色等，这些叫做特征。对于神经网络，每一层的输入都可以称为特征，只不过有些特征不能很明白地讲明白而已。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据挖掘/">数据挖掘</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/阿里巴巴/">阿里巴巴</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试总结/">面试总结</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/面试/">面试</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/03/09/2015年3月4日阿里数据挖掘工程师电话面试总结/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Apache之AllowOverride" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/03/02/Apache之AllowOverride/" class="article-date">
+  	<time datetime="2015-03-02T03:11:04.000Z" itemprop="datePublished">2015-03-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/02/Apache之AllowOverride/">Apache之AllowOverride</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>AllowOverride参数就是指明Apache服务器是否去找.htaccess文件作为配置文件。如果设置为none，那么服务器将直接忽略.htaccess文件，如果设置为all，那么所有在.htaccess中的指令都将被重写。</p>
+<p>下面是具体的一些参数的解释：</p>
+<ol>
+<li>AuthConfig：允许使用所有的权限指令</li>
+<li>FileInfo：允许使用文件控制类型的指令</li>
+<li>Indexes：允许使用目录控制类型的指令</li>
+<li>Limit：允许使用权限控制指令，Allow Deny和Order</li>
+<li>Options：允许使用控制目录特征的指令，包括Options和XBitHack</li>
+</ol>
+<p>对于Options：</p>
+<ol>
+<li>All：允许以下除了MultiViews之外的所有功能</li>
+<li>MultiViews：允许多重内容被浏览</li>
+<li>Indexes：如果没有index文件，那么就显示目录</li>
+<li>IncludesNOEXEC：允许SSI，但是不可以使用EXEC和INCLUDE指令</li>
+<li>Includes：允许SSI</li>
+<li>FollowSymLinks：跟踪符号链接</li>
+<li>SymLinksIfOwnerMatch：仅仅跟踪本文件内的符号链接</li>
+<li>ExecCGI：允许使用CGI</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache/">Apache</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/零碎知识/">零碎知识</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-My-dream" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/02/28/My-dream/" class="article-date">
+  	<time datetime="2015-02-28T12:25:26.000Z" itemprop="datePublished">2015-02-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/28/My-dream/">My_dream</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我好像不喜欢写代码。</p>
+<p>我很早就发现这个事实了，只不过我一直不愿意承认罢了。我真的一点也不喜欢写代码！之所以一直没有放弃写代码是因为发现自己对于写代码有种天赋，却不是我喜欢的天赋，真是讽刺。</p>
+<p>我心急，我焦虑，我把火气转移到别人身上。我看到自己的长处却不知道如何使用。我考研吗？不！我继续上学吗？不！那么我是否应该继续写代码？不知道。这是我以前一直做的事情，用“不知道”来麻痹自己，用“再说吧”来隐藏自己。现在是北京时间2015年2月28日20点35分。明天我就要回学校了。那么我能不能再对自己说“不知道”或者“再说吧”了呢？</p>
+<p>不！这回我要说，不！</p>
+<p>为了我自己以后的工作，前途，为了自己的婚姻，更是为了自己。我必须对自己说，“你是个喜欢写代码的人！”。是的，我是个喜欢写代码的人。我记得初中的时候写VB时的快乐和痛苦，我记得高中买C语言书然后当宝贝包起来的事，我记得大一用win32写GUI的痛苦，我记得写VHDL模拟器的神速和自学各种语言给自己的优越感，我记得自己从鄙视其他语言到能够客观地比较各类语言从而让自己选择最佳语言编程的经历，我更记得被叫过“大神”来的愉悦到无视的过程。我和代码这辈子已经结下梁子了，喜欢、憎恶，各种情绪涌上心头。我在乎为什么我自己没有更早一点有一台自己的计算机，我在乎为什么我没有做到和同龄人一样的成就，我在乎为什么我总是怨天尤人，我在乎为什么我如此不在乎自己写的代码，我在乎为什么我讨厌自己。</p>
+<p>因为我不够努力。</p>
+<p>而现在，我要努力。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/总结/">总结</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/工作计划/">工作计划</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-CursorAdapter出现空指针异常" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -536,155 +912,9 @@
 
 
   
-    <article id="post-star-in-ml" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/10/28/star-in-ml/" class="article-date">
-  	<time datetime="2014-10-28T11:16:15.000Z" itemprop="datePublished">2014-10-28</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/28/star-in-ml/">star_in_ml</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.杰弗里·辛顿<br><img src="http://logistic1994picbed.qiniudn.com/Geoffrey_Hinton.jpg" alt="杰弗里·辛顿"><br>辛顿是反向传播算法和对比散度算法(RBM中的CD-k)的创始人之一,深度学习的推动者。他是布尔的曾曾孙。(⊙o⊙)…<br>之前在Coursera上他的神经网络课程的时候感觉这个老师讲课太无趣了，什么东西都是一概而过，现在看来我还是Too young too naive呀～～</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大神/">大神</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-AdaDelta-Method" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/10/26/AdaDelta-Method/" class="article-date">
-  	<time datetime="2014-10-25T16:10:57.000Z" itemprop="datePublished">2014-10-26</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/26/AdaDelta-Method/">AdaDelta Method</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>####一般来说有这么几种计算参数更新值的方法</p>
-<ol>
-<li>Per-Dimension First Order Methods:<ul>
-<li>Momentum<br>  $$\Delta x_t = \rho\Delta x_{t-1} - \eta g_t$$</li>
-<li>ADAGRAD 需要保存所有的$g_t$值<br>  $$\Delta x_t = - \frac{\eta}{\sqrt{\sum_{\tau = 1}^t g^2_{\tau}}} g_t$$</li>
-</ul>
-</li>
-<li>Methods Using Second Order Information<ul>
-<li>Newton’s method 直接计算二价导数矩阵<br>  $$\Delta x_t = -\frac{1}{\left| diag(H_t)\right| +\mu} g_t$$</li>
-<li>quasi-Newton’s method 模拟二价导数矩阵</li>
-<li>ADAGRAD 优化的Newton’s method<br>  $$\Delta x_t = -\frac{1}{\left| diag(H_t)\right|} \frac{E[g_{t-w:t}]^2}{E[g_{t-w:t}^2]} g_t$$</li>
-</ul>
-</li>
-</ol>
-<p>本文介绍AdaDelta Method方法是属于ADAGRAD-like的方式</p>
-<p>####AdaDelta Method</p>
-<ul>
-<li><em>idea1</em> :Accumulate Over Window<ul>
-<li>假定使用固定的前$x$个gradients，这样能保证即使学习时间再长学习也不会停下来</li>
-<li>具体更新公式为:<br>  $$\Delta x_t = - \frac{\eta}{RMS[g]_t} g_t$$<br>  $$RMS[g]_t = \sqrt{E[g^2]_t + \epsilon}$$<br>  $$E[g^2]_t = \rho E[g^2]_{t-1} + (1-\rho)g_t^2$$</li>
-</ul>
-</li>
-<li><em>idea2</em> :Correct Units with Hessian Approximation<ul>
-<li>一般的只用一价导数的更新方法的单位更新如下：<br>  $$units\ of \Delta x \propto units\ of\ g \propto \frac{\partial f}{\partial x} \propto \frac{1}{units\ of\ x}$$<br><em>很明显，前后的单位不一致，除非计算的时候没有单位，AdaDelta Method中将$\Delta x_t$的表达式换成<br>  $$\Delta x_t = - \frac{RMS[\Delta x]_{t-1}}{RMS[g]_t} g_t$$
-</em>即可很好的保证在更新参数过程中单位的一致性。</li>
-</ul>
-</li>
-<li>具体算法流程：<br>  1.Initialize accumulation variables $E[g^2]_0=0$, $E[\Delta x^2]_0=0$<br>  2.for $t=1:T$ do<br>  3.Compute Gradient:$g_t$<br>  4.Accumulate Gradient:$E[g^2]_t=\rho E[g^2]_{t-1}+(1-\rho)g_t^2$<br>  5.Compute Update:$\Delta x_t = - \frac{RMS[\Delta x]_{t-1}}{RMS[g]_t} g_t$<br>  6.Accumulate Updates:$E[\Delta x^2] = \rho E[\Delta x^2]_{t-1} + (1-\rho)\Delta x_t^2$<br>  7.Apply Update:$x_{t+1}=x_t+\Delta x_t$<br>  8.end for</li>
-</ul>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/梯度下降/">梯度下降</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 </div>

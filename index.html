@@ -109,7 +109,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Android/" style="font-size: 17.5px;">Android</a> <a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Haskell/" style="font-size: 15px;">Haskell</a> <a href="/tags/LR/" style="font-size: 10px;">LR</a> <a href="/tags/LSH/" style="font-size: 10px;">LSH</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/MinHash/" style="font-size: 10px;">MinHash</a> <a href="/tags/NullPointerError/" style="font-size: 10px;">NullPointerError</a> <a href="/tags/OJ/" style="font-size: 10px;">OJ</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/SimHash/" style="font-size: 10px;">SimHash</a> <a href="/tags/cluster/" style="font-size: 10px;">cluster</a> <a href="/tags/http包/" style="font-size: 10px;">http包</a> <a href="/tags/paper/" style="font-size: 10px;">paper</a> <a href="/tags/scala/" style="font-size: 12.5px;">scala</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a> <a href="/tags/大神/" style="font-size: 12.5px;">大神</a> <a href="/tags/工作计划/" style="font-size: 10px;">工作计划</a> <a href="/tags/总结/" style="font-size: 12.5px;">总结</a> <a href="/tags/数据挖掘/" style="font-size: 12.5px;">数据挖掘</a> <a href="/tags/新年展望/" style="font-size: 10px;">新年展望</a> <a href="/tags/梯度下降/" style="font-size: 10px;">梯度下降</a> <a href="/tags/过拟合/" style="font-size: 10px;">过拟合</a> <a href="/tags/阿里巴巴/" style="font-size: 12.5px;">阿里巴巴</a> <a href="/tags/面试总结/" style="font-size: 15px;">面试总结</a>
+						<a href="/tags/Android/" style="font-size: 17.5px;">Android</a> <a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Haskell/" style="font-size: 15px;">Haskell</a> <a href="/tags/LR/" style="font-size: 10px;">LR</a> <a href="/tags/LSH/" style="font-size: 10px;">LSH</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/MinHash/" style="font-size: 10px;">MinHash</a> <a href="/tags/NullPointerError/" style="font-size: 10px;">NullPointerError</a> <a href="/tags/OJ/" style="font-size: 10px;">OJ</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scala/" style="font-size: 10px;">Scala</a> <a href="/tags/SimHash/" style="font-size: 10px;">SimHash</a> <a href="/tags/cluster/" style="font-size: 10px;">cluster</a> <a href="/tags/http包/" style="font-size: 10px;">http包</a> <a href="/tags/paper/" style="font-size: 10px;">paper</a> <a href="/tags/scala/" style="font-size: 17.5px;">scala</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a> <a href="/tags/健身/" style="font-size: 10px;">健身</a> <a href="/tags/大神/" style="font-size: 12.5px;">大神</a> <a href="/tags/好歌推荐/" style="font-size: 10px;">好歌推荐</a> <a href="/tags/工作计划/" style="font-size: 10px;">工作计划</a> <a href="/tags/总结/" style="font-size: 12.5px;">总结</a> <a href="/tags/数据挖掘/" style="font-size: 12.5px;">数据挖掘</a> <a href="/tags/新年展望/" style="font-size: 10px;">新年展望</a> <a href="/tags/梯度下降/" style="font-size: 10px;">梯度下降</a> <a href="/tags/肩部健身/" style="font-size: 10px;">肩部健身</a> <a href="/tags/过拟合/" style="font-size: 10px;">过拟合</a> <a href="/tags/阿里巴巴/" style="font-size: 12.5px;">阿里巴巴</a> <a href="/tags/面试总结/" style="font-size: 15px;">面试总结</a>
 					</div>
 				</section>
 				
@@ -177,6 +177,262 @@
 
       <div class="body-wrap">
   
+    <article id="post-Shadowsock" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/27/Shadowsock/" class="article-date">
+  	<time datetime="2016-05-27T08:41:03.000Z" itemprop="datePublished">2016-05-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/27/Shadowsock/">Shadowsock-Android修改</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="主要想法">主要想法</h2><p>网络上有不少免费的SS账号，但大多数都是每隔几个小时就变一次密码的。所以期望在SS-android版中增加一个小功能：点击一个按钮，便自动获取网络上某个免费账号。</p>
+<h4 id="SS-Android分析">SS-Android分析</h4><p>java部分是java和scala混合编程的，其中java用于特定的安卓部分用scala无法实现的。<br>网络传输编码解码部分是c或者c++的。<br>我们这边主要修改的是主界面部分。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scala/">scala</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/scala/">scala</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/05/27/Shadowsock/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Scala-Week4" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/27/Scala-Week4/" class="article-date">
+  	<time datetime="2016-05-27T08:40:52.000Z" itemprop="datePublished">2016-05-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/27/Scala-Week4/">Scala-Week4</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Functions_as_Objects">Functions as Objects</h2><h4 id="Expansion_of_Function_Values">Expansion of Function Values</h4><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(x: <span class="type">Int</span>) =&gt; x * x</span><br></pre></td></tr></table></figure>
+<p>is expanded to<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="type">Function1</span>[<span class="type">Int</span>, <span class="type">Int</span>] &#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">apply</span>(</span>x: <span class="type">Int</span>) = x * x</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>This is called <code>Eta-Exp</code>.</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scala/">Scala</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Scala/">Scala</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/05/27/Scala-Week4/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-逐渐变高" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/05/逐渐变高/" class="article-date">
+  	<time datetime="2016-04-05T05:57:59.000Z" itemprop="datePublished">2016-04-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/05/逐渐变高/">逐渐变高</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>满汉一只花的作品，乌拉乌拉~<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/好歌推荐/">好歌推荐</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/推荐/">推荐</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/04/05/逐渐变高/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Scala-Week3" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/05/Scala-Week3/" class="article-date">
+  	<time datetime="2016-04-05T05:56:26.000Z" itemprop="datePublished">2016-04-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/05/Scala-Week3/">Scala Week3</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Types_and_Evaluation">Types and Evaluation</h3><p>Type parameters will not affect evaluation in Scala.<br>All specific type will be removed when compiling. For example, <code>Array[Int]</code> is the same class as <code>Array[Double]</code>. But in C++, C#, they are not the same. Removing the specific type is called <code>Type Erasure</code>. C++, C# will make compiled code larger, beacause for every Gerenic Type, a specail class/type will be generated.</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scala/">scala</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/scala/">scala</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Scala-Week2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -212,18 +468,6 @@
 <li>String type</li>
 <li>A function type</li>
 </ol>
-<h4 id="Expressions">Expressions</h4><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">Expr            = <span class="value">InfixExpr | FunctionExpr | if <span class="string">'('</span> Expr <span class="string">')'</span> Expr else Expr</span></span></span><br><span class="line"><span class="setting">InfixExpr       = <span class="value">PrefixExpr | InfixExpr Operator InfixExpr</span></span></span><br><span class="line"><span class="setting">Operator        = <span class="value">ident</span></span></span><br><span class="line"><span class="setting">PrefixExpr      = <span class="value">[<span class="string">'+'</span> | <span class="string">'-'</span> | <span class="string">'!'</span> | <span class="string">'~'</span>] SimpleExpr</span></span></span><br><span class="line"><span class="setting">SimpleExpr      = <span class="value">ident | literal | SimpleExpr <span class="string">'.'</span> ident | Block</span></span></span><br><span class="line"><span class="setting">FunctionExpr    = <span class="value">Bindings <span class="string">'=&gt;'</span> Expr</span></span></span><br><span class="line"><span class="setting">Bindings        = <span class="value">ident [<span class="string">':'</span> SimpleType] | <span class="string">'('</span> [Binding &#123;<span class="string">','</span> Binding&#125;] <span class="string">')'</span></span></span></span><br><span class="line"><span class="setting">Binging         = <span class="value">ident [<span class="string">':'</span> Type]</span></span></span><br><span class="line"><span class="setting">Block           = <span class="value"><span class="string">'&#123;'</span> &#123;Def <span class="string">';'</span>&#125; Expr <span class="string">'&#125;'</span></span></span></span><br></pre></td></tr></table></figure>
-<h4 id="Definitions">Definitions</h4><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">Def             = <span class="value">FunDef | ValDef</span></span></span><br><span class="line"><span class="setting">FunDef          = <span class="value">def ident &#123;<span class="string">'('</span> [Parameters] <span class="string">')'</span>&#125; [<span class="string">':'</span> Type] <span class="string">'='</span> Expr</span></span></span><br><span class="line"><span class="setting">ValDef          = <span class="value">val ident [<span class="string">':'</span> Type] <span class="string">'='</span> Expr</span></span></span><br><span class="line"><span class="setting">Parameter       = <span class="value">ident <span class="string">':'</span> [<span class="string">'=&gt;'</span>] Type</span></span></span><br><span class="line"><span class="setting">Parameters      = <span class="value">Parameter &#123;<span class="string">','</span> Parameter&#125;</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="More_Fun_With_Rationals">More Fun With Rationals</h3><h4 id="Preconditions">Preconditions</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span></span>(x: <span class="typename">Int</span>, y: <span class="typename">Int</span>) &#123;</span><br><span class="line">    require(y&gt;<span class="number">0</span>, <span class="string">"denominator must be positive"</span>)</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Assertions">Assertions</h4><p>Preconditions和Assertions的区别在于, Assert会抛出AssertionError错误，而Precondition会抛出IllgalArgumentException异常</p>
-<h3 id="Classes_and_Substitutions">Classes and Substitutions</h3><p>The expression $new C(v_1,\dots,v_m).f(w_1,\dots,w_n)$ is rewritten to $[w_1/y_1,\dots,w_n/y_n][v_1/x_1,\dots,v_m/x_m][new C(v_1,\dots,v_m)/this]b$</p>
-<ol>
-<li>替换函数f的参数</li>
-<li>替换new C的参数</li>
-<li>替换f的owner为this</li>
-</ol>
-<h3 id="Evaluation_and_Operation">Evaluation and Operation</h3><p>二元运算中，所有的中缀表达式都可以进行简写，比如<code>a.max(b) &lt;=&gt; a max b</code><br>一元运算，比如取负，则必须强调为<code>prefix operator</code>：<code>def unary_- :</code></p>
-
       
     </div>
     
@@ -240,6 +484,10 @@
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/04/05/Scala-Week2/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -283,14 +531,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="Scala"><a href="https://zh.wikipedia.org/wiki/Scala" title="Scala维基百科" target="_blank" rel="external">Scala</a></h4><p>集面向对象和函数式编程于一体的语言。</p>
-<h4 id="Martin_Odersky"><a href="https://en.wikipedia.org/wiki/Martin_Odersky" title="Martin_Odersky" target="_blank" rel="external">Martin_Odersky</a></h4><p>Scala语言的实现者。</p>
-<h4 id="Functional_Programming_Principles_in_Scala"><a href="https://class.coursera.org/progfun-005" title="Functional Programming Principles in Scala" target="_blank" rel="external">Functional Programming Principles in Scala</a></h4><p>Coursera上的相关课程。</p>
-<h3 id="Evaluation_Strategies_and_Termination">Evaluation Strategies and Termination</h3><p>Evaluation策略有两种，Call-by-value按值访问，Call-by-name按名称访问。<br>Scala默认按照CBV的方式，如果要按CBN的方式，则需要加上<code>=&gt;</code>标志<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span>(</span>x:<span class="type">Int</span>, y:=&gt;<span class="type">Int</span>) = <span class="number">1</span></span><br><span class="line"><span class="comment">// 其中x按值访问，y按名称访问</span></span><br></pre></td></tr></table></figure></p>
-<p>如果用CBV方式能够终结(terminate)的程序，那么按照CBN的方式肯定也能终结；反之不一定。</p>
-<h3 id="Conditionals_and_Value_Definitions">Conditionals and Value Definitions</h3><p><code>val</code>和<code>def</code>的区别是，<code>val</code>在定义的过程将立即进行求值，<code>def</code>则会按名访问<br>比如<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loop</span>:</span> <span class="type">Boolean</span> = loop</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">x</span> =</span> loop <span class="comment">// 成功的定义</span></span><br><span class="line"><span class="keyword">val</span> x = loop <span class="comment">// 错误的定义，将会进行一次non-terminated的求值过程</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="Tail_Recursion">Tail Recursion</h3><p>If a function calls itself as its last action, the function’s stack frame can be reused. This is called <strong>tail recursion</strong></p>
-
+        <h4 id="Scala"><a href="https://zh.wikipedia.org/wiki/Scala" title="Scala维基百科">Scala</a></h4><p>集面向对象和函数式编程于一体的语言。</p>
+<h4 id="Martin_Odersky"><a href="https://en.wikipedia.org/wiki/Martin_Odersky" title="Martin_Odersky">Martin_Odersky</a></h4><p>Scala语言的实现者。</p>
+<h4 id="Functional_Programming_Principles_in_Scala"><a href="https://class.coursera.org/progfun-005" title="Functional Programming Principles in Scala">Functional Programming Principles in Scala</a></h4><p>Coursera上的相关课程。</p>
       
     </div>
     
@@ -307,6 +550,74 @@
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/04/05/Scala-Week1/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-肩部锻炼" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/28/肩部锻炼/" class="article-date">
+  	<time datetime="2016-02-28T08:01:35.000Z" itemprop="datePublished">2016-02-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/28/肩部锻炼/">肩部锻炼</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>肩部对于男人的外在形象非常重要。如果不是Jack Ma的话，有一副厚实的肩部既可以给爱人做安全的支撑，又可以让自己的穿着品味更上一层。可惜的是年少的时候过于贪玩，没有给现在的健身打下坚实的基础。现在健身时，不仅要对自己的力量有充分的认识，还要清楚每个健身动作的作用、标准以及量度。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/健身/">健身</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/肩部健身/">肩部健身</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/健身/">健身</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/02/28/肩部锻炼/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -527,377 +838,9 @@
 
 
   
-    <article id="post-Haskell-1" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/09/24/Haskell-1/" class="article-date">
-  	<time datetime="2015-09-24T08:53:00.000Z" itemprop="datePublished">2015-09-24</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/24/Haskell-1/">Haskell 1</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><em>From “A Gentle Introduction to Haskell 98”</em></p>
-<p><strong>学习一门函数式编程，以作为我大学的纪念。</strong></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Haskell/">Haskell</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Haskell/">Haskell</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/09/24/Haskell-1/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Comprehensive-Survey-of-Clustering-Algorithms" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/09/22/Comprehensive-Survey-of-Clustering-Algorithms/" class="article-date">
-  	<time datetime="2015-09-22T13:01:23.000Z" itemprop="datePublished">2015-09-22</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/22/Comprehensive-Survey-of-Clustering-Algorithms/">Comprehensive Survey of Clustering Algorithms</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <a id="more"></a>
-<p>This paper is <a href="http://link.springer.com/article/10.1007/s40745-0150-040-1" title="A Comprehensive Survey of Clustering Algorithms" target="_blank" rel="external">A Comprehensive Survey of Clustering Algorithms</a>.</p>
-<h2 id="Classic_definition_of_clusering">Classic definition of clusering</h2><ol>
-<li>Instances, in the same cluster, must be similar as much as possible</li>
-<li>Instances, in the different clusters, must be different as much as possitble</li>
-<li>Measurement for similarity and dissimilarity must be clear and have the practical meaning</li>
-</ol>
-<h2 id="Standard_process_of_clustering">Standard process of clustering</h2><ol>
-<li>Feature extraction and selection: extract and select the most <strong>representative</strong> features</li>
-<li>Clustering algorithm design</li>
-<li>Result evaluation</li>
-<li>Result explanation</li>
-</ol>
-<h2 id="Internal_evaluation_indicators">Internal evaluation indicators</h2><ol>
-<li>Davies-Bouldin<br>$$<br>DB=\frac{1}{k}\sum_{i=1}^k{max_{i\neq j}\left(\frac{\sigma_i + \sigma_j}{d(c_i + c_j)}\right)}<br>$$</li>
-<li>Dunn indicator<br>There must be some errors.</li>
-</ol>
-<p><strong>To-do</strong></p>
-<ol>
-<li>understand Mahalanobis distance, $\sqrt{(x_i - x_j)^T S^{-1} (x_i - x_j)}$, where S is the covariance matrix inside the cluster</li>
-<li>one of the similarity functions, for data of mixed type, map the feature into (0, 1), transform the fature into dichotomous one $S_{ij}=\frac{1}{d} \sum_{l=1}^d{S_{ijl}}$</li>
-<li></li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/paper/">paper</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-面试总结" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/09/17/面试总结/" class="article-date">
-  	<time datetime="2015-09-17T08:11:13.000Z" itemprop="datePublished">2015-09-17</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/17/面试总结/">面试总结</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <a id="more"></a>
-<h1 id="2015面试总结">2015面试总结</h1><h3 id="阿里">阿里</h3><ul>
-<li>2015.3 数据岗电面<br>  一面直接挂，总的来说就是我在平时学习中对于很多东西的总结不够，比如怎么解释特征，比如除了kmeans之外的一些其他聚类算法。幸运的是此时我的简历还没上去，就当是磨练了吧。</li>
-<li>2015.4 淘宝技术部现场群面<br>  需要能说出自己想表达的东西，我发现还是边画图写代码边说更适合我。总结什么的我真的不能说。</li>
-<li>2015.4~5 实习生电面，一共6面<br>  最煎熬的一段时间，还好算法复习的不错，而且项目经验也说的很溜。</li>
-<li>2015.8 转正面试<br>  真的应该好好准备。<strong>能做出好的ppt真的是一件很好的事情。</strong>平时做事情的时候对于业务上的思考与总结也很重要。</li>
-<li>2015.9 转正交叉面试<br>  <strong>算法要能够温故而知新!</strong></li>
-</ul>
-<h3 id="百度">百度</h3><ul>
-<li>2015.9 笔试<br>  笔试比较简单，受益于在阿里的实习，对于一些业务上的细节把握的不错。</li>
-<li>2015.9 一面<br>  很顺利，最重要的是面试官是一线做算法的人，学到的东西也很多</li>
-<li>2015.9 二面<br>  有点结巴。比如 <strong>LR模型</strong>的一些东西就给忘了，有些东西在脑子里呢，可是名字死活记不得，基础不够牢固啊！</li>
-</ul>
-<h3 id="腾讯">腾讯</h3><ul>
-<li>2015.9 一面<br>  西八。腾讯的做算法的太屌了，都是博士生，你一个本科生还是老老实实写代码做工程去吧。感觉在腾讯做工程的人都瞧不起学历小于等于自己的做算法的。你做的那些算法都是别人做剩下的。唉，压力不小啊！</li>
-<li>2015.9 二面<br>  西八。我写了一个归并排序后直接走人。屌丝程序猿何苦为难屌丝程序猿呢？</li>
-</ul>
-<h3 id="百度作业帮">百度作业帮</h3><ul>
-<li>2015.9 一面<br>  主要还是项目经验，一些基础的算法以及两道编程题。编程题挺有意思的。<br>  第一道是防止DDOS的题。给定一系列的访问数据，要求给出在一定范围内时间访问次数超过N次的一些IP。解法是不考虑内存的循环队列。<br>  第二道是DNN输出的找出TopN。</li>
-<li>2015.9 二面<br>  项目经验和一些简单的算法。</li>
-</ul>
-<h3 id="购物党">购物党</h3><ul>
-<li>西八。还招不招人啊，两个小时做4道工程类编程题以及6到业务题。有病!</li>
-</ul>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试总结/">面试总结</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/面试/">面试</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Experience-of-data-science" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/09/14/Experience-of-data-science/" class="article-date">
-  	<time datetime="2015-09-14T15:51:56.000Z" itemprop="datePublished">2015-09-14</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/14/Experience-of-data-science/">Experience of data science</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>Original post is <a href="http://www.csdn.net/article/2015-09-10/2825668" title="关于数据科学，书上不曾提及的三点经验" target="_blank" rel="external">关于数据科学，书上不曾提及的三点经验</a>.</p>
-</blockquote>
-<p>Algorithms are important as we all know. But in practice, we should never know how such an algorithm is coded, for they all have been packed already. Most of us even have never implemented such complex toys, such as SVM etc. So what really counts?</p>
-<h2 id="Evaluation_Methods">Evaluation Methods</h2><p>Our models could be invalid at any time! If simply getting half of dataset to be trainning set, while others to be test set, most of time we could get good models. But when data is sensitive to time, or other things, models can be very werid. For example, dresses are hot in June, cold in Feb.</p>
-<p>At the other case, when there is high correlationship among the dataset, Stock as an example… we all know. </p>
-<p>So we should get evaluation methods as good as possible, just to avoid some worst cases.</p>
-<h2 id="Feature_Engineering">Feature Engineering</h2><p>Models are simple even <strong>ugly</strong> tools for TB-level data.<br>Features are arts.<br>Features are arts.<br>Features are arts.<br>(Important things should be repeated for 3 times.)</p>
-<h2 id="Model_parameters_should_spend_most_of_the_time">Model parameters should spend most of the time</h2><p><strong>I should need more time to understand that.</strong></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-LeetCode-happy-number" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/09/13/LeetCode-happy-number/" class="article-date">
-  	<time datetime="2015-09-13T05:30:20.000Z" itemprop="datePublished">2015-09-13</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/13/LeetCode-happy-number/">LeetCode_happy_number</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Description">Description</h2><blockquote>
-<p>A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits and repeat the process until the number equals 1(where it will stay), or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.<br><strong>Example</strong>: 19 is a happy number<br>$$<br>1^2 + 9^2 = 82 \\<br>8^2 + 2^2 = 68 \\<br>6^2 + 8^2 = 100 \\<br>1^2 + 0^2 + 0^2 = 1<br>$$</p>
-</blockquote>
-<h2 id="Solution">Solution</h2><p>It is very easy to solve. At the first beginning, i was thinking about how to identify if one number had already existed. So i use HashMap. But the solution time is not so gratifying.</p>
-<p>One day later, I found such behavior of the sequence: if numbers are not happy, it will follow such sequence as follows:<br>$$<br>4, 16, 37, 58, 89, 145, 42, 20, 4, \ldots<br>$$</p>
-<p>Beautiful!</p>
-<h2 id="Code">Code</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isHappy</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum;</span><br><span class="line">    <span class="keyword">int</span> temp;</span><br><span class="line">    <span class="keyword">while</span> (sum != <span class="number">1</span>) &#123;</span><br><span class="line">        sum = <span class="number">0</span>;</span><br><span class="line">        temp = n;</span><br><span class="line">        <span class="keyword">while</span> (temp != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> factor = temp / <span class="number">10</span>;</span><br><span class="line">            <span class="keyword">int</span> remainer = temp - <span class="number">10</span> * factor;</span><br><span class="line">            sum += (remainer * remainer);</span><br><span class="line">            temp = factor;</span><br><span class="line">        &#125;</span><br><span class="line">        n = sum;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">4</span> || n == <span class="number">16</span> || n == <span class="number">37</span> || n == <span class="number">58</span> || n == <span class="number">89</span> || n == <span class="number">145</span> || n == <span class="number">42</span> || n == <span class="number">20</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OJ/">OJ</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/C/">C</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>
